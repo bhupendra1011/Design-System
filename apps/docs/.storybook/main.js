@@ -34,7 +34,7 @@ const config = {
   },
 
   docs: {
-    autodocs: true,
+    autodocs: "tag",
   },
 };
 

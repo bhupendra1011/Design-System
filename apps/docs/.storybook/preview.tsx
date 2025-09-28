@@ -120,6 +120,29 @@ const preview: Preview = {
         `;
         
         styleEl.textContent = theme === 'dark' ? darkStyles : lightStyles;
+        
+        // Add CSS to reduce story height in docs
+        let storyHeightEl = document.getElementById('story-height-override');
+        if (!storyHeightEl) {
+          storyHeightEl = document.createElement('style');
+          storyHeightEl.id = 'story-height-override';
+          document.head.appendChild(storyHeightEl);
+        }
+        
+        storyHeightEl.textContent = `
+          .docs-story {
+            min-height: 150px !important;
+            height: 150px !important;
+          }
+          .sb-story {
+            min-height: 150px !important;
+            height: 150px !important;
+          }
+          iframe[data-is-storybook="true"] {
+            height: 150px !important;
+            min-height: 150px !important;
+          }
+        `;
       }
       
       return (
