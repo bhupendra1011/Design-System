@@ -1,0 +1,7 @@
+{
+  "primitives": {
+    "shadows": {
+      "lg": { "value": "0px 16px 80px rgba(0, 0, 0, 0.5)" }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "primitives": {
+    "typography": {
+      "fontFamily": {
+        "inter": { "value": ["Inter", "sans-serif"] },
+        "geist": { "value": ["Geist", "sans-serif"] }
+      },
+      "fontWeight": {
+        "regular": { "value": "400" },
+        "medium": { "value": "500" }
+      },
+      "fontSize": {
+        "xs": { "value": "12px" },
+        "sm": { "value": "13px" },
+        "md": { "value": "18px" }
+      },
+      "lineHeight": {
+        "tight": { "value": "100%" },
+        "normal": { "value": "16px" },
+        "relaxed": { "value": "28.8px" }
+      }
+    }
+  }
+}

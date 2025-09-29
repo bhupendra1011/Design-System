@@ -1,0 +1,12 @@
+{
+  "primitives": {
+    "spacing": {
+      "xs": { "value": "2px" },
+      "sm": { "value": "6px" },
+      "md": { "value": "8px" },
+      "lg": { "value": "12px" },
+      "xl": { "value": "16px" }
+    }
+  }
+}
+

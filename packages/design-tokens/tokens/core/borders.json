@@ -1,0 +1,7 @@
+{
+  "primitives": {
+    "borderWidth": {
+      "sm": { "value": "1px" }
+    }
+  }
+}
