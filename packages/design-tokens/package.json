@@ -1,12 +1,24 @@
 {
   "name": "@pd/design-tokens",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./dist/css/tokens.css",
+    "./theme.css": "./dist/css/theme.css",
+    "./tailwind.config": "./dist/js/tailwind.config.js",
+    "./types": "./dist/types/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "scripts": {
+    "build": "npx style-dictionary build --config light.config.js && npx style-dictionary build --config dark.config.js && cat dist/css/light.css dist/css/dark.css > dist/css/tokens.css && rm dist/css/light.css dist/css/dark.css && node tailwind-build.js && tsc",
+    "dev": "npm run build",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "style-dictionary": "^4.0.1",
+    "typescript": "5.5.4"
+  }
 }

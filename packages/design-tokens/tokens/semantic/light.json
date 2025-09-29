@@ -1,52 +1,50 @@
 {
-  "light": {
-    "colors": {
-      "bg-app": { "value": "{primitives.colors.white.500}" },
-      "bg-modal": { "value": "{primitives.colors.gray.50}" },
-      "bg-card": { "value": "{primitives.colors.gray.50}" },
-      "bg-badge": { "value": "{primitives.colors.gray.200}" },
-      
-      "text-primary": { "value": "{primitives.colors.neutral.900}" },
-      "text-secondary": { "value": "{primitives.colors.gray.500}" },
-      "text-tertiary": { "value": "{primitives.colors.gray.400}" },
-      "text-muted": { "value": "{primitives.colors.gray.400}" },
-      "text-badge-active": { "value": "{primitives.colors.gray.600}" },
-      "text-badge-inactive": { "value": "{primitives.colors.gray.500}" },
-      "text-placeholder": { "value": "{primitives.colors.gray.400}" },
-      "text-modal-header": { "value": "{primitives.colors.gray.600}" },
-      
-      "border-card": { "value": "{primitives.colors.gray.200}" },
-      
-      "button-primary": { "value": "{primitives.colors.purple.500}" },
-      "button-text": { "value": "{primitives.colors.white.500}" },
-      
-      "modal-shadow": { "value": "{primitives.colors.black.500}" }
-    },
-    "typography": {
-      "font-family-primary": { "value": "{primitives.typography.fontFamily.inter}" },
-      "font-family-secondary": { "value": "{primitives.typography.fontFamily.geist}" },
-      "font-size-title": { "value": "{primitives.typography.fontSize.md}" },
-      "font-size-body": { "value": "{primitives.typography.fontSize.sm}" },
-      "font-size-small": { "value": "{primitives.typography.fontSize.xs}" },
-      "font-weight-regular": { "value": "{primitives.typography.fontWeight.regular}" },
-      "font-weight-medium": { "value": "{primitives.typography.fontWeight.medium}" }
-    },
-    "spacing": {
-      "gap-tiny": { "value": "{primitives.spacing.xs}" },
-      "gap-small": { "value": "{primitives.spacing.sm}" },
-      "gap-medium": { "value": "{primitives.spacing.md}" },
-      "gap-large": { "value": "{primitives.spacing.lg}" },
-      "gap-section": { "value": "{primitives.spacing.xl}" }
-    },
-    "radius": {
-      "card": { "value": "{primitives.borderRadius.sm}" },
-      "modal": { "value": "{primitives.borderRadius.md}" }
-    },
-    "shadows": {
-      "modal": { "value": "{primitives.shadows.lg}" }
-    },
-    "borders": {
-      "card": { "value": "{primitives.borderWidth.sm}" }
-    }
+  "colors": {
+    "bg-app": { "value": "{primitives.colors.white.500}" },
+    "bg-modal": { "value": "{primitives.colors.gray.50}" },
+    "bg-card": { "value": "{primitives.colors.gray.50}" },
+    "bg-badge": { "value": "{primitives.colors.gray.200}" },
+    
+    "text-primary": { "value": "{primitives.colors.neutral.900}" },
+    "text-secondary": { "value": "{primitives.colors.gray.500}" },
+    "text-tertiary": { "value": "{primitives.colors.gray.400}" },
+    "text-muted": { "value": "{primitives.colors.gray.400}" },
+    "text-badge-active": { "value": "{primitives.colors.gray.600}" },
+    "text-badge-inactive": { "value": "{primitives.colors.gray.500}" },
+    "text-placeholder": { "value": "{primitives.colors.gray.400}" },
+    "text-modal-header": { "value": "{primitives.colors.gray.600}" },
+    
+    "border-card": { "value": "{primitives.colors.gray.200}" },
+    
+    "button-primary": { "value": "{primitives.colors.purple.500}" },
+    "button-text": { "value": "{primitives.colors.white.500}" },
+    
+    "modal-shadow": { "value": "{primitives.colors.black.500}" }
+  },
+  "typography": {
+    "font-family-primary": { "value": "{primitives.typography.fontFamily.inter}" },
+    "font-family-secondary": { "value": "{primitives.typography.fontFamily.geist}" },
+    "font-size-title": { "value": "{primitives.typography.fontSize.md}" },
+    "font-size-body": { "value": "{primitives.typography.fontSize.sm}" },
+    "font-size-small": { "value": "{primitives.typography.fontSize.xs}" },
+    "font-weight-regular": { "value": "{primitives.typography.fontWeight.regular}" },
+    "font-weight-medium": { "value": "{primitives.typography.fontWeight.medium}" }
+  },
+  "spacing": {
+    "gap-tiny": { "value": "{primitives.spacing.xs}" },
+    "gap-small": { "value": "{primitives.spacing.sm}" },
+    "gap-medium": { "value": "{primitives.spacing.md}" },
+    "gap-large": { "value": "{primitives.spacing.lg}" },
+    "gap-section": { "value": "{primitives.spacing.xl}" }
+  },
+  "radius": {
+    "card": { "value": "{primitives.borderRadius.sm}" },
+    "modal": { "value": "{primitives.borderRadius.md}" }
+  },
+  "shadows": {
+    "modal": { "value": "{primitives.shadows.lg}" }
+  },
+  "borders": {
+    "card": { "value": "{primitives.borderWidth.sm}" }
   }
 }

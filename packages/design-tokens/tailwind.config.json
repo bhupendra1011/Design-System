@@ -1,0 +1,13 @@
+{
+  "source": ["tokens/semantic/*.json"],
+  "platforms": {
+    "tailwind": {
+      "transformGroup": "js",
+      "buildPath": "dist/js/",
+      "files": [{
+        "destination": "tailwind.config.js",
+        "format": "tailwind/theme"
+      }]
+    }
+  }
+}
