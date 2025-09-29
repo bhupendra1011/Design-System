@@ -115,3 +115,22 @@
   "gap-large": "12px",          // Large gaps (icon spacing)
   "gap-section": "16px"         // Section spacing (New Issue -- Issue Title)
 }
+
+## light mode ( colors flipped from dark mode)
+
+bg-app: neutral.900 → white.500
+bg-modal: neutral.950 → gray.50
+bg-card: neutral.950 → gray.50
+bg-badge: gray.500 → gray.200
+text-primary: gray.50 → neutral.900
+text-secondary: gray.400 → gray.500
+text-tertiary: gray.600 → gray.400
+text-muted: gray.300 → gray.400
+text-badge-active: gray.200 → gray.600
+text-badge-inactive: gray.100 → gray.500
+text-placeholder: gray.300 → gray.400
+text-modal-header: gray.200 → gray.600
+border-card: neutral.950 → gray.200
+modal-shadow: black.500 → black.500
+button-primary: purple.500 → purple.500
+button-text: white.500 → white.500
