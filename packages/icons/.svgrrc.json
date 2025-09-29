@@ -1,0 +1,21 @@
+{
+  "typescript": true,
+  "jsxRuntime": "automatic",
+  "replaceAttrValues": {
+    "#000": "currentColor",
+    "#000000": "currentColor",
+    "black": "currentColor",
+    "#fff": "currentColor", 
+    "#ffffff": "currentColor",
+    "white": "currentColor"
+  },
+  "svgProps": {
+    "width": "{size}",
+    "height": "{size}",
+    "fill": "{color}",
+    "stroke": "none"
+  },
+  "dimensions": false,
+  "filenameCase": "pascal",
+  "index": false
+}
