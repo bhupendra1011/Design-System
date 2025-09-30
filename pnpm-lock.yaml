@@ -39,6 +39,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      '@storybook/addon-a11y':
+        specifier: 8.2.6
+        version: 8.2.6(storybook@8.2.6)
       '@storybook/addon-actions':
         specifier: ^8.2.6
         version: 8.2.6(storybook@8.2.6)
@@ -3096,6 +3099,16 @@ packages:
   /@sindresorhus/merge-streams@2.3.0:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
+    dev: true
+
+  /@storybook/addon-a11y@8.2.6(storybook@8.2.6):
+    resolution: {integrity: sha512-GRD50atWJz/V9E6Wyvx4HZWIBAR9m8A0Zn+yBoDVmWzXPOKI62HmWG5zpznCUR7stTt+gAkda1HG7H4KysTZWg==}
+    peerDependencies:
+      storybook: ^8.2.6
+    dependencies:
+      '@storybook/addon-highlight': 8.2.6(storybook@8.2.6)
+      axe-core: 4.10.3
+      storybook: 8.2.6
     dev: true
 
   /@storybook/addon-actions@8.2.6(storybook@8.2.6):

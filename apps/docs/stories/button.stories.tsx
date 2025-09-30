@@ -118,6 +118,9 @@ export const WithIcon: Story = {
   name: "With Icon",
   args: {
     children: "Priority Task",
+	leftIcon: <PriorityIcon size={18} className="text-gray-300" />,
     className: "",
   },
 };
+
+

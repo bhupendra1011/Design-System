@@ -14,6 +14,21 @@ const preview: Preview = {
     backgrounds: {
       disable: true,
     },
+    a11y: {
+      config: {
+        rules: [
+          // custom accessibility rules
+          {
+            id: 'color-contrast',
+            enabled: true,
+          }
+        ],
+      },
+      // Options to pass to axe-core
+      options: {},
+      // Manual accessibility testing
+      manual: false,
+    },
   },
   globalTypes: {
     theme: {

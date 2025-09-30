@@ -63,12 +63,12 @@ function fixDuplicateProperties() {
     // Update SVG props to use the passed props with smart color handling
     content = content.replace(/width=\{[^}]+\}/g, 'width={size}');
     content = content.replace(/height=\{[^}]+\}/g, 'height={size}');
-    content = content.replace(/fill=\{[^}]+\}/g, 'style={{fill: color}} fill={color}');
+    content = content.replace(/fill=\{[^}]+\}/g, 'fill={color}');
     
-    // Add className prop handling
+    // Add className prop handling and accessibility attributes
     content = content.replace(
       /(<svg[^>]*)\s*{\.\.\.props}/g, 
-      '$1 className={className} {...props}'
+      '$1 role="img" aria-hidden="true" className={className} {...props}'
     );
     
     // Update interface to be exported from first component only
