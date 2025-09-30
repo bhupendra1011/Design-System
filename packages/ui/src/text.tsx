@@ -1,9 +1,10 @@
-import React from 'react';
+import { type HTMLAttributes, forwardRef, createElement } from 'react';
+import type React from 'react';
 
 type TextVariant = 'title' | 'body' | 'small' | 'label' | 'placeholder';
 type TextElement = 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'label';
 
-interface TextProps extends React.HTMLAttributes<HTMLElement> {
+interface TextProps extends HTMLAttributes<HTMLElement> {
   as?: TextElement;
   variant?: TextVariant;
   children: React.ReactNode;
@@ -45,7 +46,7 @@ const variantColors: Record<TextVariant, string> = {
   placeholder: 'var(--colors-text-placeholder)'
 };
 
-export const Text = React.forwardRef<HTMLElement, TextProps>(
+export const Text = forwardRef<HTMLElement, TextProps>(
   ({ as: Component = 'p', variant = 'body', children, className = '', style, ...props }, ref) => {
     const variantStyleProps = variantStyles[variant];
     const defaultColor = variantColors[variant];
@@ -60,11 +61,11 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       ...style
     };
 
-    return React.createElement(
+    return createElement(
       Component,
       {
         ref,
-        className: className,
+        className,
         style: combinedStyle,
         ...props
       },

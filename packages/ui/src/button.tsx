@@ -1,7 +1,7 @@
-import React from "react";
+import React, { type ButtonHTMLAttributes } from "react";
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   leftIcon?: React.ReactElement;
 }

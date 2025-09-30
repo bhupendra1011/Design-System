@@ -20,6 +20,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@pd/design-tokens':
+        specifier: workspace:*
+        version: link:../../packages/design-tokens
       '@pd/icons':
         specifier: workspace:*
         version: link:../../packages/icons
@@ -93,6 +96,9 @@ importers:
 
   apps/issues-app:
     dependencies:
+      '@pd/design-tokens':
+        specifier: workspace:*
+        version: link:../../packages/design-tokens
       '@pd/icons':
         specifier: workspace:*
         version: link:../../packages/icons
