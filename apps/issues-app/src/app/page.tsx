@@ -1,5 +1,6 @@
 import { Button } from "@pd/ui/button";
 import { PriorityIcon, AssigneeIcon, CloseIcon } from "@pd/icons";
+import { Text } from "@pd/ui/text";
 
 export default function Home() {
   return (
@@ -16,6 +17,11 @@ export default function Home() {
       >
         Priority Task1
       </Button>
+
+      <Text as="h2" variant="title" className="text-red-400">This is Title Text</Text>
+      <Text variant="body">This is Body Text</Text>
+      <Text variant="small">This is Small Text</Text>
+      <Text variant="label" className="animate-bounce">This is Label Tex 1</Text>
     </div>
   );
 }

@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+/* Import design tokens CSS variables */
+@import "../../../../packages/design-tokens/dist/css/tokens.css";
+
+/* Import Tailwind v4 theme definitions for semantic colors */
+@import "../../../../packages/design-tokens/dist/css/theme.css";
+
 /* resolve tailwind utilities from ui package */
 @source "../../../../packages/ui/src";
 

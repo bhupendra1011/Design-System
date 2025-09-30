@@ -1,6 +1,5 @@
 import "../global.css"; 
 import type { Preview } from '@storybook/react';
-import React from 'react';
 
 const preview: Preview = {
   parameters: {
@@ -62,57 +61,14 @@ const preview: Preview = {
         body.classList.remove('light', 'dark');
         body.classList.add(theme);
         
-        // Apply background color directly to the body based on theme
-        if (theme === 'dark') {
-          body.style.backgroundColor = '#1f2937';
-          body.style.color = '#f9fafb';
-        } else {
-          body.style.backgroundColor = '#ffffff';
-          body.style.color = '#111827';
-        }
-        
-        // Apply theme to Storybook's docs containers
+        // Apply theme to Storybook's docs containers using design tokens
         const docsContainer = document.querySelector('.docs-story') as HTMLElement;
         if (docsContainer) {
           docsContainer.classList.remove('light', 'dark');
           docsContainer.classList.add(theme);
         }
         
-        // Apply to the main docs content area
-        const sbMainPadded = document.querySelector('.sb-main-padded') as HTMLElement;
-        if (sbMainPadded) {
-          if (theme === 'dark') {
-            sbMainPadded.style.backgroundColor = '#1f2937';
-            sbMainPadded.style.color = '#f9fafb';
-          } else {
-            sbMainPadded.style.backgroundColor = '#ffffff';
-            sbMainPadded.style.color = '#111827';
-          }
-        }
-        
-        // Also target the docs content wrapper
-        const docsContent = document.querySelector('#storybook-docs') as HTMLElement;
-        if (docsContent) {
-          if (theme === 'dark') {
-            docsContent.style.backgroundColor = '#1f2937';
-            docsContent.style.color = '#f9fafb';
-          } else {
-            docsContent.style.backgroundColor = '#ffffff';
-            docsContent.style.color = '#111827';
-          }
-        }
-        
-        // Target the main Storybook panel
-        const storybookPanel = document.querySelector('#storybook-preview-wrapper') as HTMLElement;
-        if (storybookPanel) {
-          if (theme === 'dark') {
-            storybookPanel.style.backgroundColor = '#1f2937';
-          } else {
-            storybookPanel.style.backgroundColor = '#ffffff';
-          }
-        }
-        
-        // Add global CSS for docs theming
+        // Add global CSS using design token variables only
         let styleEl = document.getElementById('docs-theme-styles');
         if (!styleEl) {
           styleEl = document.createElement('style');
@@ -120,21 +76,37 @@ const preview: Preview = {
           document.head.appendChild(styleEl);
         }
         
-        const darkStyles = `
-          .docs-story { background-color: #1f2937 !important; color: #f9fafb !important; }
-          .sb-main-padded { background-color: #1f2937 !important; color: #f9fafb !important; }
-          .docblock-source { background-color: #374151 !important; }
-          .docblock-code-toggle { background-color: #374151 !important; color: #f9fafb !important; }
+        const designTokenStyles = `
+          /* Apply design token backgrounds to main areas */
+          body, 
+          .sb-main-padded, 
+          #storybook-docs {
+            background-color: var(--colors-bg-app) !important; 
+            color: var(--colors-text-primary) !important; 
+          }
+          
+          /* Component preview areas use design token background but NOT text color */
+          .docs-story {
+            background-color: var(--colors-bg-app) !important; 
+          }
+          
+          /* Code blocks use transparent background */
+          .docblock-source, 
+          .docblock-code-toggle {
+            background-color: transparent !important; 
+            color: inherit !important;
+            border: none !important;
+          }
+          
+          /* Code syntax highlighting */
+          .docblock-source pre,
+          .docblock-source code {
+            background-color: transparent !important;
+            color: inherit !important;
+          }
         `;
         
-        const lightStyles = `
-          .docs-story { background-color: #ffffff !important; color: #111827 !important; }
-          .sb-main-padded { background-color: #ffffff !important; color: #111827 !important; }
-          .docblock-source { background-color: #f3f4f6 !important; }
-          .docblock-code-toggle { background-color: #f3f4f6 !important; color: #111827 !important; }
-        `;
-        
-        styleEl.textContent = theme === 'dark' ? darkStyles : lightStyles;
+        styleEl.textContent = designTokenStyles;
         
         // Add CSS to reduce story height in docs
         let storyHeightEl = document.getElementById('story-height-override');
@@ -161,10 +133,8 @@ const preview: Preview = {
       }
       
       return (
-        <div className={`${theme} min-h-screen`}>
-          <div className="bg-primary text-body min-h-screen p-4">
-            <Story />
-          </div>
+        <div className={`${theme} min-h-screen p-4`}>
+          <Story />
         </div>
       );
     },

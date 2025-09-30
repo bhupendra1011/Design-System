@@ -13,7 +13,8 @@
     "react-dom": "19.1.0",
     "next": "15.5.4",
     "@pd/ui": "workspace:*",
-    "@pd/icons": "workspace:*"
+    "@pd/icons": "workspace:*",
+    "@pd/design-tokens": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",
