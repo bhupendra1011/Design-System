@@ -15,6 +15,7 @@
     "text-modal-header": { "value": "{primitives.colors.gray.200}" },
     
     "border-card": { "value": "{primitives.colors.neutral.950}" },
+    "border-badge": { "value": "{primitives.colors.gray.700}" },
     
     "button-primary": { "value": "{primitives.colors.purple.500}" },
     "button-text": { "value": "{primitives.colors.white.500}" },
