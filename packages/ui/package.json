@@ -13,6 +13,11 @@
       "types": "./src/text.tsx",
       "import": "./dist/text.mjs",
       "require": "./dist/text.js"
+    },
+    "./card": {
+      "types": "./src/card.tsx",
+      "import": "./dist/card.mjs",
+      "require": "./dist/card.js"
     }
   },
   "scripts": {

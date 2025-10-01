@@ -90,19 +90,62 @@ const preview: Preview = {
             background-color: var(--colors-bg-app) !important; 
           }
           
-          /* Code blocks use transparent background */
+          /* Code blocks with better contrast */
           .docblock-source, 
           .docblock-code-toggle {
-            background-color: transparent !important; 
-            color: inherit !important;
-            border: none !important;
+            background-color: var(--colors-bg-card) !important; 
+            border: 1px solid var(--colors-border-card) !important;
+            border-radius: 6px !important;
+            padding: 16px !important;
           }
           
-          /* Code syntax highlighting */
+          /* Code syntax highlighting - maintain readable colors */
           .docblock-source pre,
           .docblock-source code {
             background-color: transparent !important;
-            color: inherit !important;
+            color: var(--colors-text-primary) !important;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+          }
+          
+          /* Specific syntax highlighting for better readability */
+          .docblock-source .token.keyword,
+          .docblock-source .token.function {
+            color: #0066cc !important; /* Blue for keywords and functions */
+          }
+          
+          .docblock-source .token.string,
+          .docblock-source .token.attr-value {
+            color: #22863a !important; /* Green for strings */
+          }
+          
+          .docblock-source .token.comment {
+            color: #6a737d !important; /* Gray for comments */
+            font-style: italic !important;
+          }
+          
+          .docblock-source .token.tag,
+          .docblock-source .token.attr-name {
+            color: #d73a49 !important; /* Red for tags and attributes */
+          }
+          
+          /* Dark theme specific overrides */
+          .dark .docblock-source .token.keyword,
+          .dark .docblock-source .token.function {
+            color: #79b8ff !important; /* Lighter blue for dark mode */
+          }
+          
+          .dark .docblock-source .token.string,
+          .dark .docblock-source .token.attr-value {
+            color: #85e89d !important; /* Lighter green for dark mode */
+          }
+          
+          .dark .docblock-source .token.comment {
+            color: #8b949e !important; /* Lighter gray for dark mode */
+          }
+          
+          .dark .docblock-source .token.tag,
+          .dark .docblock-source .token.attr-name {
+            color: #ff7b72 !important; /* Lighter red for dark mode */
           }
         `;
         
