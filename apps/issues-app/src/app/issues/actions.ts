@@ -41,3 +41,48 @@ export async function createIssue(issueData: {
 
   return newCard;
 }
+
+export async function updateIssue(
+  cardId: string,
+  updatedData: {
+    title: string;
+    content: string;
+    priority?: string;
+    labels?: string[];
+    assignee?: string;
+  }
+): Promise<Card | null> {
+  // simulate database delay with 1s delay
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  // Find the card across all columns
+  let foundCard: Card | null = null;
+  for (const column of currentBoardData.columns) {
+    const cardIndex = column.cards.findIndex(card => card.id === cardId);
+    if (cardIndex !== -1) {
+      // Update the card data
+      foundCard = {
+        ...column.cards[cardIndex],
+        title: updatedData.title,
+        content: updatedData.content,
+        bottomIcon: updatedData.assignee ? 'user' : undefined,
+        rightIcon: updatedData.priority ? 'priority' : undefined,
+      };
+      column.cards[cardIndex] = foundCard;
+      break;
+    }
+  }
+
+  return foundCard;
+}
+
+export async function getCardData(cardId: string): Promise<{ card: Card; columnId: string } | null> {
+  // Find the card and its column
+  for (const column of currentBoardData.columns) {
+    const card = column.cards.find(c => c.id === cardId);
+    if (card) {
+      return { card, columnId: column.id };
+    }
+  }
+  return null;
+}

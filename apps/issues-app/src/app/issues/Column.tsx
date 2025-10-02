@@ -14,9 +14,10 @@ interface KanbanColumnProps {
   column: ColumnData;
   activeId?: string | null;
   onIssueCreated?: (card: Card) => void;
+  onCardClick?: (card: Card, columnId: string) => void;
 }
 
-export function KanbanColumn({ column, activeId, onIssueCreated }: KanbanColumnProps) {
+export function KanbanColumn({ column, activeId, onIssueCreated, onCardClick }: KanbanColumnProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const {
@@ -91,7 +92,9 @@ export function KanbanColumn({ column, activeId, onIssueCreated }: KanbanColumnP
             <KanbanCard 
               key={card.id} 
               card={card} 
+              columnId={column.id}
               isBeingDragged={activeId === card.id}
+              onCardClick={onCardClick}
             />
           ))}
         </div>

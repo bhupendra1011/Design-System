@@ -14,6 +14,7 @@ import {
 } from '@dnd-kit/core';
 import { KanbanColumn } from './Column';
 import { KanbanCard } from './Card';
+import { UpdateIssueModal } from './UpdateIssueModal';
 import type { BoardData, Card } from './data';
 import {
   BacklogIcon,
@@ -38,6 +39,10 @@ export function Board({ initialData }: BoardProps) {
   });
 
   const [activeId, setActiveId] = useState<string | null>(null);
+  
+  // Modal state for editing cards
+  const [editingCard, setEditingCard] = useState<{ card: Card; columnId: string } | null>(null);
+  
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -149,6 +154,35 @@ export function Board({ initialData }: BoardProps) {
     }));
   }
 
+  function handleCardClick(card: Card, columnId: string): void {
+    setEditingCard({ card, columnId });
+  }
+
+  function handleModalClose(): void {
+    setEditingCard(null);
+  }
+
+  function handleIssueUpdated(updatedCard: Card): void {
+    if (!editingCard) return;
+    
+    // Update the card in place
+    setItems((prev) => {
+      const updatedItems = { ...prev };
+      const columnCards = updatedItems[editingCard.columnId];
+      const cardIndex = columnCards.findIndex(card => card.id === updatedCard.id);
+      
+      if (cardIndex !== -1) {
+        updatedItems[editingCard.columnId] = [
+          ...columnCards.slice(0, cardIndex),
+          updatedCard,
+          ...columnCards.slice(cardIndex + 1),
+        ];
+      }
+      
+      return updatedItems;
+    });
+  }
+
   const activeItem = activeId ? 
     Object.values(items).flat().find(item => item.id === activeId) : null;
 
@@ -184,6 +218,7 @@ export function Board({ initialData }: BoardProps) {
               }}
               activeId={activeId}
               onIssueCreated={(newCard) => handleIssueCreated(column.id, newCard)}
+              onCardClick={handleCardClick}
             />
           );
         })}
@@ -191,9 +226,20 @@ export function Board({ initialData }: BoardProps) {
 
       <DragOverlay>
         {activeItem ? (
-          <KanbanCard card={activeItem} isDragging />
+          <KanbanCard card={activeItem} columnId="" isDragging />
         ) : null}
       </DragOverlay>
+
+      {/* Update Issue Modal */}
+      {editingCard && (
+        <UpdateIssueModal
+          isOpen={true}
+          onClose={handleModalClose}
+          card={editingCard.card}
+          columnId={editingCard.columnId}
+          onIssueUpdated={handleIssueUpdated}
+        />
+      )}
     </DndContext>
   );
 }

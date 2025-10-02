@@ -8,14 +8,17 @@ import {
   AssigneeIcon, 
   PriorityIcon
 } from '@pd/icons';
+import { useRef } from 'react';
 
 interface KanbanCardProps {
   card: CardData;
+  columnId: string;
   isDragging?: boolean;
   isBeingDragged?: boolean;
+  onCardClick?: (card: CardData, columnId: string) => void;
 }
 
-export function KanbanCard({ card, isDragging, isBeingDragged }: KanbanCardProps) {
+export function KanbanCard({ card, columnId, isDragging, isBeingDragged, onCardClick }: KanbanCardProps) {
   const {
     attributes,
     listeners,
@@ -45,6 +48,13 @@ export function KanbanCard({ card, isDragging, isBeingDragged }: KanbanCardProps
     return 'default';
   };
 
+  const handlePriorityIconClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent drag from starting
+    if (onCardClick) {
+      onCardClick(card, columnId);
+    }
+  };
+
   return (
     <div
       ref={setNodeRef}
@@ -55,7 +65,15 @@ export function KanbanCard({ card, isDragging, isBeingDragged }: KanbanCardProps
     >
       <UICard
         title={card.title}
-        bottomIcon={<span className="text-[var(--colors-text-secondary)]"><PriorityIcon size={16} /></span>}
+        bottomIcon={
+          <span 
+            className="text-[var(--colors-text-secondary)] hover:text-[var(--colors-text-primary)] cursor-pointer transition-colors p-1 -m-1 rounded" 
+            onClick={handlePriorityIconClick}
+            title="Edit this card"
+          >
+            <PriorityIcon size={16} />
+          </span>
+        }
         rightIcon={<span className="text-[var(--colors-text-tertiary)]"><AssigneeIcon size={16} /></span>}
         variant={getVariant()}
       >
