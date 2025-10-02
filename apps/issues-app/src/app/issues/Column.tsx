@@ -44,6 +44,8 @@ export function KanbanColumn({ column, activeId, onIssueCreated, onCardClick }: 
     <div 
       ref={setNodeRef}
       className="w-75  p-4 rounded-lg border border-card min-h-[500px]"
+      data-testid={`column-${column.id}`}
+      data-column-id={column.id}
     >
       <div className="flex items-center gap-2 mb-4">
         <span className="text-[var(--colors-text-primary)]">{column.icon}</span>

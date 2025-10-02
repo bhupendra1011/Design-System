@@ -8,7 +8,6 @@ import {
   AssigneeIcon, 
   PriorityIcon
 } from '@pd/icons';
-import { useRef } from 'react';
 
 interface KanbanCardProps {
   card: CardData;
@@ -62,6 +61,8 @@ export function KanbanCard({ card, columnId, isDragging, isBeingDragged, onCardC
       {...attributes}
       {...listeners}
       className="cursor-grab active:cursor-grabbing"
+      data-testid="kanban-card"
+      data-card-id={card.id}
     >
       <UICard
         title={card.title}
@@ -70,14 +71,16 @@ export function KanbanCard({ card, columnId, isDragging, isBeingDragged, onCardC
             className="text-[var(--colors-text-secondary)] hover:text-[var(--colors-text-primary)] cursor-pointer transition-colors p-1 -m-1 rounded" 
             onClick={handlePriorityIconClick}
             title="Edit this card"
+            data-testid="priority-icon"
           >
             <PriorityIcon size={16} />
           </span>
         }
         rightIcon={<span className="text-[var(--colors-text-tertiary)]"><AssigneeIcon size={16} /></span>}
         variant={getVariant()}
+        data-testid="card-content"
       >
-        {card.content}
+        <span data-testid="card-text">{card.content}</span>
       </UICard>
     </div>
   );
