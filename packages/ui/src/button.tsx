@@ -18,9 +18,9 @@ export function Button({ children, className, leftIcon, variant = 'primary', dis
   const baseStyles = 'inline-flex items-center gap-2 px-2 py-2 rounded focus:outline-none transition-all duration-200';
   const variantClass = variantStyles[variant];
   
-  // Disabled styles
+  // Disabled styles - don't use pointer-events-none as it breaks focus trap accessibility
   const disabledStyles = disabled 
-    ? 'opacity-50 cursor-not-allowed pointer-events-none' 
+    ? 'opacity-50 cursor-not-allowed' 
     : '';
 
   // Dynamic styles based on variant

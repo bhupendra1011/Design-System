@@ -123,9 +123,17 @@ export function NewIssueModal({ isOpen, onClose, columnId, columnTitle, onIssueC
             <Badge 
               key={badge.id}
               leftIcon={badge.icon}
+              tabIndex={0}
+              role="button"
               onClick={() => {
                 // handle badge click actions here
                 console.log(`Selected ${badge.label}`);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  console.log(`Selected ${badge.label}`);
+                }
               }}
             >
               {badge.label}

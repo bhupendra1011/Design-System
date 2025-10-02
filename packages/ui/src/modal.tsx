@@ -66,7 +66,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       };
     }, [isOpen, onClose]);
 
-    // Focus management
+    // Focus management and focus trapping
     useEffect(() => {
       if (isOpen) {
         // Store current active element
@@ -79,13 +79,74 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
         // Prevent body scroll
         document.body.style.overflow = "hidden";
-      } else {
-        // Restore focus and body scroll
-        if (previousActiveElement.current) {
-          previousActiveElement.current.focus();
-        }
-        document.body.style.overflow = "";
+
+        // Focus trap functionality
+        const handleTabKey = (event: KeyboardEvent): void => {
+          if (event.key !== 'Tab' || !modalRef.current) return;
+
+          // Enhanced selector to catch all focusable elements (including disabled buttons for a11y)
+          const focusableElements = modalRef.current.querySelectorAll(
+            'button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), div[onclick], div[role="button"], [role="button"], summary, [contenteditable="true"]'
+          );
+          
+          // Filter for visible and truly focusable elements
+          const visibleFocusableElements = Array.from(focusableElements).filter((element) => {
+            const htmlElement = element as HTMLElement;
+            
+            // Basic visibility checks
+            const isVisible = htmlElement.offsetParent !== null && 
+                             !htmlElement.hidden && 
+                             htmlElement.style.display !== 'none' &&
+                             htmlElement.style.visibility !== 'hidden';
+            
+            if (!isVisible) return false;
+            
+            // Check if element has actual size
+            const rect = htmlElement.getBoundingClientRect();
+            const hasSize = rect.width > 0 && rect.height > 0;
+            
+            // Don't exclude disabled buttons from focus trap (they should still be focusable for a11y)
+            // Only exclude elements that are truly not focusable
+            const isNotFocusable = htmlElement.style.pointerEvents === 'none' ||
+                                  htmlElement.classList.contains('pointer-events-none') ||
+                                  (htmlElement.hasAttribute('tabindex') && htmlElement.getAttribute('tabindex') === '-1');
+            
+            return hasSize && !isNotFocusable;
+          });
+          
+          if (visibleFocusableElements.length === 0) return;
+          
+          const firstElement = visibleFocusableElements[0] as HTMLElement;
+          const lastElement = visibleFocusableElements[visibleFocusableElements.length - 1] as HTMLElement;
+
+          if (event.shiftKey) {
+            // Shift + Tab - moving backwards
+            if (document.activeElement === firstElement || !modalRef.current.contains(document.activeElement)) {
+              event.preventDefault();
+              lastElement.focus();
+            }
+            return;
+          }
+          
+          // Tab - moving forwards
+          if (document.activeElement === lastElement || !modalRef.current.contains(document.activeElement)) {
+            event.preventDefault();
+            firstElement.focus();
+          }
+        };
+
+        document.addEventListener('keydown', handleTabKey);
+        
+        return () => {
+          document.removeEventListener('keydown', handleTabKey);
+        };
       }
+      
+      // Restore focus and body scroll when modal closes
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus();
+      }
+      document.body.style.overflow = "";
 
       return () => {
         document.body.style.overflow = "";
@@ -136,7 +197,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 <Button
                 aria-label="More options"
                 className="!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group"
-                onClick={()=>{}}
+                onClick={() => { /* TODO: implement expand functionality */ }}
               >
                 <ExpandIcon
                   className="text-secondary group-hover:text-primary transition-colors"

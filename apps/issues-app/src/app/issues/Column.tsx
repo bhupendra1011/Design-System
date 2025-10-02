@@ -57,15 +57,29 @@ export function KanbanColumn({ column, activeId, onIssueCreated }: KanbanColumnP
         <div className="ml-auto flex items-center gap-2">
           <Button 
             onClick={handleAddClick} 
-            aria-label="Add issue" 
-            className='!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group'
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleAddClick();
+              }
+            }}
+            aria-label="Add new issue to this column" 
+            className='!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group focus:!ring-2 focus:!ring-button-primary'
+            tabIndex={0}
           >
             <AddIcon size={16} className='text-secondary group-hover:text-primary transition-colors' />
           </Button>
           <Button 
             onClick={()=>{}} 
-            aria-label="More options" 
-            className='!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group'
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                // Handle more options
+              }
+            }}
+            aria-label="More options for this column" 
+            className='!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group focus:!ring-2 focus:!ring-button-primary'
+            tabIndex={0}
           >
             <MoreIcon size={16} className='text-secondary group-hover:text-primary transition-colors' />
           </Button>
