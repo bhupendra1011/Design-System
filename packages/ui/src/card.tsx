@@ -7,7 +7,6 @@ type CardVariant = 'default' | 'selected' | 'dragging';
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   // Content
   title: string;
-  subtitle?: string;
   children?: React.ReactNode;
   
   // Layout slots
@@ -56,7 +55,7 @@ const contentStyles: React.CSSProperties = {
   flex: 1,
   fontSize: 'var(--typography-font-size-small)',
   fontWeight: 'var(--typography-font-weight-regular)',
-  color: 'var(--colors-text-secondary)',
+  color: 'var(--colors-text-primary)',
   lineHeight: 1.4
 };
 
@@ -76,7 +75,6 @@ const rightIconStyles: React.CSSProperties = {
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ 
     title, 
-    subtitle,
     children, 
     bottomIcon, 
     rightIcon, 
@@ -126,18 +124,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           {title}
         </Text>
 
-        {/* Subtitle */}
-        {subtitle ? (
-          <Text 
-            style={{ 
-              color: 'var(--colors-text-muted)',
-              marginBottom: 'var(--spacing-gap-small, 4px)'
-            }}
-            variant="small"
-          >
-            {subtitle}
-          </Text>
-        ) : null}
 
         {/* Main Content */}
         {children ? (

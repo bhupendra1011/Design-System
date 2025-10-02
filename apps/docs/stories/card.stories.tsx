@@ -61,7 +61,7 @@ import { PriorityIcon } from '@pd/icons';
 // Card with content and slots
 <Card 
   title="Task Title"
-  subtitle="FIG-4"
+
   bottomIcon={<PriorityIcon size={16} />}
   rightIcon={<AssigneeIcon size={16} />}
 >
@@ -112,7 +112,6 @@ function DraggableCard({ id, title }) {
 ## Layout Slots
 
 - **\`title\`**: Main card title (required)
-- **\`subtitle\`**: Optional subtitle with muted color (e.g., "FIG-4")
 - **\`children\`**: Optional content area for descriptions
 - **\`bottomIcon\`**: Icon displayed at bottom-left for status/priority
 - **\`rightIcon\`**: Icon displayed at top-right for assignment
@@ -125,13 +124,6 @@ function DraggableCard({ id, title }) {
     title: {
       control: 'text',
       description: 'Card title text',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    subtitle: {
-      control: 'text',
-      description: 'Optional subtitle with muted color (e.g., "FIG-4")',
       table: {
         type: { summary: 'string' },
       },
@@ -194,13 +186,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     title: 'Basic Card',
+ 
   },
 };
 
 export const IssueCard: Story = {
   args: {
     title: 'Fix login validation bug',
-    subtitle: 'FIG-123',
+
     children: 'Users are unable to log in with special characters in their password.',
     bottomIcon: 'priority',
     rightIcon: 'assignee',
@@ -210,6 +203,7 @@ export const IssueCard: Story = {
 export const Interactive: Story = {
   args: {
     title: 'Clickable Card',
+  
     children: 'This card responds to clicks and keyboard navigation.',
     bottomIcon: 'todo',
     rightIcon: 'assignee',
@@ -232,7 +226,6 @@ export const AllVariants: Story = {
         <Card 
           bottomIcon={<PriorityIcon size={16} />}
           rightIcon={<AssigneeIcon size={16} />}
-          subtitle="FIG-1"
           title="Default Card"
         >
           Standard card appearance
@@ -243,7 +236,6 @@ export const AllVariants: Story = {
         <Card 
           bottomIcon={<InprogressIcon size={16} />}
           rightIcon={<AssigneeIcon size={16} />}
-          subtitle="FIG-2"
           title="Selected Card"
           variant="selected"
         >
@@ -255,7 +247,6 @@ export const AllVariants: Story = {
         <Card 
           bottomIcon={<DoneIcon size={16} />}
           rightIcon={<AssigneeIcon size={16} />}
-          subtitle="FIG-3"
           title="Dragging Card"
           variant="dragging"
         >
@@ -281,7 +272,7 @@ export const IssueCards: Story = {
       <Card 
         bottomIcon={<PriorityIcon size={16} />}
         rightIcon={<AssigneeIcon size={16} />}
-        subtitle="FIG-123"
+
         title="Implement user authentication"
       >
         Add JWT-based authentication system with login and registration forms.
@@ -289,7 +280,7 @@ export const IssueCards: Story = {
       <Card 
         bottomIcon={<InprogressIcon size={16} />}
         rightIcon={<AssigneeIcon size={16} />}
-        subtitle="FIG-124"
+       
         title="Fix responsive layout issues"
         variant="selected"
       >
@@ -297,7 +288,7 @@ export const IssueCards: Story = {
       </Card>
       <Card 
         bottomIcon={<TodoIcon size={16} />}
-        subtitle="FIG-125"
+      
         title="Update documentation"
       >
         Add API documentation for new endpoints and update getting started guide.
@@ -305,7 +296,7 @@ export const IssueCards: Story = {
       <Card 
         bottomIcon={<DoneIcon size={16} />}
         rightIcon={<AssigneeIcon size={16} />}
-        subtitle="FIG-126"
+     
         title="Performance optimization"
       >
         Optimize bundle size and implement code splitting for better load times.
@@ -318,7 +309,7 @@ export const IssueCards: Story = {
 interface CardItem {
   id: string;
   title: string;
-  subtitle?: string;
+ 
   content?: React.ReactNode;
   bottomIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -328,7 +319,7 @@ interface CardItem {
 function SortableCard({ 
   id, 
   title, 
-  subtitle, 
+
   children, 
   bottomIcon, 
   rightIcon,
@@ -336,7 +327,7 @@ function SortableCard({
 }: {
   id: string;
   title: string;
-  subtitle?: string;
+  
   children?: React.ReactNode;
   bottomIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -372,7 +363,7 @@ function SortableCard({
       ref={setNodeRef}
       rightIcon={rightIcon}
       style={style}
-      subtitle={subtitle}
+      
       title={title}
       variant={getVariant()}
     >
@@ -432,7 +423,7 @@ function DroppableColumn({
               isBeingDragged={activeId === item.id}
               key={item.id}
               rightIcon={item.rightIcon}
-              subtitle={item.subtitle}
+            
               title={item.title}
             >
               {item.content}
@@ -451,7 +442,7 @@ function DraggableKanbanBoard(): JSX.Element {
         {
           id: 'card-1',
           title: 'User authentication system',
-          subtitle: 'FIG-201',
+         
           content: 'Implement JWT-based authentication with login and registration',
           bottomIcon: <BacklogIcon size={16} />,
           rightIcon: <AssigneeIcon size={16} />
@@ -459,7 +450,7 @@ function DraggableKanbanBoard(): JSX.Element {
         {
           id: 'card-2',
           title: 'Database migration',
-          subtitle: 'FIG-202',
+          
           content: 'Migrate legacy database to new schema',
           bottomIcon: <BacklogIcon size={16} />,
           rightIcon: <AssigneeIcon size={16} />
@@ -467,7 +458,7 @@ function DraggableKanbanBoard(): JSX.Element {
         {
           id: 'card-3',
           title: 'Design system updates',
-          subtitle: 'FIG-205',
+         
           content: 'Update component library with new design tokens',
           bottomIcon: <BacklogIcon size={16} />,
           rightIcon: <AssigneeIcon size={16} />
@@ -477,7 +468,7 @@ function DraggableKanbanBoard(): JSX.Element {
         {
           id: 'card-4',
           title: 'API documentation',
-          subtitle: 'FIG-203',
+      
           content: 'Write comprehensive API documentation for new endpoints',
           bottomIcon: <TodoIcon size={16} />,
           rightIcon: <AssigneeIcon size={16} />
@@ -485,7 +476,7 @@ function DraggableKanbanBoard(): JSX.Element {
         {
           id: 'card-5',
           title: 'Unit test coverage',
-          subtitle: 'FIG-204',
+  
           content: 'Increase test coverage to 90%',
           bottomIcon: <TodoIcon size={16} />,
           rightIcon: <AssigneeIcon size={16} />
@@ -633,7 +624,7 @@ function DraggableKanbanBoard(): JSX.Element {
             <Card
               bottomIcon={activeItem.bottomIcon}
               rightIcon={activeItem.rightIcon}
-              subtitle={activeItem.subtitle}
+              
               title={activeItem.title}
               variant="dragging"
             >
