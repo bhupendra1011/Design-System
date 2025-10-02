@@ -10,7 +10,7 @@ export function ThemeToggle() {
     <div className="fixed top-4 right-4 z-50">
       <Button
         onClick={toggleTheme}
-        className="rounded-full border-0 focus:ring-0 focus:outline-none bg-transparent hover:bg-transparent cursor-pointer "
+        className="rounded-full border-0 focus:ring-0 focus:outline-none !bg-transparent !hover:bg-transparent cursor-pointer "
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
        
       >

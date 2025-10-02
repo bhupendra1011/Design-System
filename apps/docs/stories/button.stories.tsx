@@ -73,6 +73,23 @@ import { PriorityIcon } from "@pd/icons";
 	        defaultValue: { summary: "undefined" },
 	      },
 	    },
+	    variant: {
+	      control: { type: "select" },
+	      options: ["primary", "outline"],
+	      description: "Button visual style variant",
+	      table: {
+	        type: { summary: "'primary' | 'outline'" },
+	        defaultValue: { summary: "'primary'" },
+	      },
+	    },
+	    disabled: {
+	      control: { type: "boolean" },
+	      description: "Whether the button is disabled",
+	      table: {
+	        type: { summary: "boolean" },
+	        defaultValue: { summary: "false" },
+	      },
+	    },
 	    className: {
 	      table: { disable: true },
 	      control: false,
@@ -121,6 +138,43 @@ export const WithIcon: Story = {
 	leftIcon: <PriorityIcon size={18} className="text-gray-300" />,
     className: "",
   },
+};
+
+export const Disabled: Story = {
+  name: "Disabled",
+  args: {
+    children: "Disabled Button",
+    disabled: true,
+    className: "",
+  },
+};
+
+export const AllVariants: Story = {
+  name: "All Variants", 
+  render: () => (
+    <div className="space-y-4 p-4">
+      <div className="flex gap-4 items-center">
+        <Button variant="primary">Primary Button</Button>
+        <Button variant="outline">Outline Button</Button>
+        <Button variant="primary" leftIcon={<PriorityIcon size={16} />}>
+          Primary with Icon
+        </Button>
+        <Button variant="outline" leftIcon={<CloseIcon size={16} />}>
+          Outline with Icon
+        </Button>
+      </div>
+      <div className="flex gap-4 items-center">
+        <Button variant="primary" disabled>Primary Disabled</Button>
+        <Button variant="outline" disabled>Outline Disabled</Button>
+        <Button variant="primary" leftIcon={<PriorityIcon size={16} />} disabled>
+          Primary with Icon Disabled
+        </Button>
+        <Button variant="outline" leftIcon={<CloseIcon size={16} />} disabled>
+          Outline with Icon Disabled
+        </Button>
+      </div>
+    </div>
+  ),
 };
 
 

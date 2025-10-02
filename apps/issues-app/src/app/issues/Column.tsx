@@ -1,19 +1,24 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { KanbanCard } from './Card';
 import { Text } from '@pd/ui/text';
-import type { Column as ColumnData } from './data';
+import type { Column as ColumnData, Card } from './data';
 import { AddIcon, MoreIcon } from '@pd/icons';
+import { NewIssueModal } from './NewIssueModal';
+import { Button } from '@pd/ui/button';
 
 interface KanbanColumnProps {
   column: ColumnData;
   activeId?: string | null;
+  onIssueCreated?: (card: Card) => void;
 }
 
-export function KanbanColumn({ column, activeId }: KanbanColumnProps) {
+export function KanbanColumn({ column, activeId, onIssueCreated }: KanbanColumnProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const {
     setNodeRef,
   } = useDroppable({
@@ -25,6 +30,14 @@ export function KanbanColumn({ column, activeId }: KanbanColumnProps) {
   });
 
   const cardIds = column.cards.map(card => card.id);
+
+  const handleAddClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div 
@@ -41,9 +54,21 @@ export function KanbanColumn({ column, activeId }: KanbanColumnProps) {
         >
           {column.cards.length}/10
         </Text>
-        <div className="ml-auto flex items-center gap-2 text-[var(--colors-text-secondary)]">
-          <AddIcon />
-          <MoreIcon />
+        <div className="ml-auto flex items-center gap-2">
+          <Button 
+            onClick={handleAddClick} 
+            aria-label="Add issue" 
+            className='!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group'
+          >
+            <AddIcon size={16} className='text-secondary group-hover:text-primary transition-colors' />
+          </Button>
+          <Button 
+            onClick={()=>{}} 
+            aria-label="More options" 
+            className='!bg-transparent hover:!bg-card !p-1 !rounded-md transition-all !cursor-pointer !border-0 group'
+          >
+            <MoreIcon size={16} className='text-secondary group-hover:text-primary transition-colors' />
+          </Button>
         </div>
       </div>
       <SortableContext items={cardIds} strategy={verticalListSortingStrategy}>
@@ -64,6 +89,15 @@ export function KanbanColumn({ column, activeId }: KanbanColumnProps) {
           Drop cards here
         </div>
       )}
+
+      {/* New Issue Modal */}
+      <NewIssueModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        columnId={column.id}
+        columnTitle={column.title}
+        onIssueCreated={onIssueCreated}
+      />
     </div>
   );
 }

@@ -142,6 +142,13 @@ export function Board({ initialData }: BoardProps) {
     setActiveId(null);
   }
 
+  function handleIssueCreated(columnId: string, newCard: Card): void {
+    setItems((prev) => ({
+      ...prev,
+      [columnId]: [...(prev[columnId] || []), newCard],
+    }));
+  }
+
   const activeItem = activeId ? 
     Object.values(items).flat().find(item => item.id === activeId) : null;
 
@@ -176,6 +183,7 @@ export function Board({ initialData }: BoardProps) {
                 cards: items[column.id] || []
               }}
               activeId={activeId}
+              onIssueCreated={(newCard) => handleIssueCreated(column.id, newCard)}
             />
           );
         })}
