@@ -49,10 +49,11 @@ export function KanbanColumn({ column, activeId, onIssueCreated, onCardClick }: 
     >
       <div className="flex items-center gap-2 mb-4">
         <span className="text-[var(--colors-text-primary)]">{column.icon}</span>
-        <Text as="span" variant="body" className="text-[var(--colors-text-primary)]">{column.title}</Text>
+        <Text as="span" variant="body" className="text-[var(--colors-text-primary)] font-secondary">{column.title}</Text>
         <Text 
           as="span" 
           variant="body" 
+          className='font-secondary'
           
         >
           {column.cards.length}/10

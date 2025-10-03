@@ -54,9 +54,13 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     // Check if className contains text color classes
     const hasCustomColor = className && /text-[\w-]+/.test(className);
     
+    // Check if className contains font family classes
+    const hasCustomFont = className && /(?:font-[\w-]+|font-family-[\w-]+)/.test(className);
+    
     // Combine variant styles with user styles and default color
     const combinedStyle = {
       ...variantStyleProps,
+      fontFamily: hasCustomFont ? undefined : variantStyleProps.fontFamily,
       color: hasCustomColor ? undefined : defaultColor,
       ...style
     };
