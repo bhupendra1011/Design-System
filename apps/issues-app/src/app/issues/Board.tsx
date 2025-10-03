@@ -194,7 +194,7 @@ export function Board({ initialData }: BoardProps) {
       onDragStart={handleDragStart}
       sensors={sensors}
     >
-      <div className="flex flex-wrap gap-5 p-5 mx-auto  mb-5 bg-[var(--colors-bg-app)] mt-10 rounded-lg overflow-x-auto min-h-[500px]">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-2 p-3 md:p-2 mx-auto mb-5 bg-[var(--colors-bg-app)] mt-10 rounded-lg min-h-[500px]">
         {initialData.columns.map((column) => {
           // Map column icons based on column id
           const getColumnIcon = (columnId: string) => {
