@@ -1,208 +1,227 @@
-# Turborepo Design System Starter
+# Design System & Issues Tracker
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+This repository demonstrates a **design system + product app integration** using a monorepo architecture.  
+It contains:  
+- A **design system** (tokens, themes, components, icons, docs).  
+- An **issues tracker app** (Kanban board) built with **Next.js 15 + React 19**, consuming the design system directly.  
 
-This guide explains how to use a React design system starter powered by:
+The goal is to show a **token-first workflow** from **Figma → code**, with automated documentation, theming, and testing for production-grade scalability.  
 
-- 🏎 [Turborepo](https://turborepo.com) — High-performance build system for Monorepos
-- 🚀 [React](https://reactjs.org/) — JavaScript library for user interfaces
-- 🛠 [Tsup](https://github.com/egoist/tsup) — TypeScript bundler powered by esbuild
-- 📖 [Storybook](https://storybook.js.org/) — UI component environment powered by Vite
+---
 
-As well as a few others tools preconfigured:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-- [Changesets](https://github.com/changesets/changesets) for managing versioning and changelogs
-- [GitHub Actions](https://github.com/changesets/action) for fully automated package publishing
-
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest -e design-system
-```
-
-### Useful Commands
-
-- `pnpm build` - Build all packages, including the Storybook site
-- `pnpm dev` - Run all packages locally and preview with Storybook
-- `pnpm lint` - Lint all packages
-- `pnpm changeset` - Generate a changeset
-- `pnpm clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
-
-## Turborepo
-
-[Turborepo](https://turborepo.com) is a high-performance build system for JavaScript and TypeScript codebases. It was designed after the workflows used by massive software engineering organizations to ship code at scale. Turborepo abstracts the complex configuration needed for monorepos and provides fast, incremental builds with zero-configuration remote caching.
-
-Using Turborepo simplifies managing your design system monorepo, as you can have a single lint, build, test, and release process for all packages. [Learn more](https://vercel.com/blog/monorepos-are-changing-how-teams-build-software) about how monorepos improve your development workflow.
-
-## Apps & Packages
-
-This Turborepo includes the following packages and applications:
-
-- `apps/docs`: Component documentation site with Storybook
-- `packages/ui`: Core React components
-- `packages/typescript-config`: Shared `tsconfig.json`s used throughout the Turborepo
-- `packages/eslint-config`: ESLint preset
-
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/). Workspaces enables us to "hoist" dependencies that are shared between packages to the root `package.json`. This means smaller `node_modules` folders and a better local dev experience. To install a dependency for the entire monorepo, use the `-w` workspaces flag with `pnpm add`.
-
-This example sets up your `.gitignore` to exclude all generated files, other folders like `node_modules` used to store your dependencies.
-
-### Compilation
-
-To make the ui library code work across all browsers, we need to compile the raw TypeScript and React code to plain JavaScript. We can accomplish this with `tsup`, which uses `esbuild` to greatly improve performance.
-
-Running `pnpm build` from the root of the Turborepo will run the `build` command defined in each package's `package.json` file. Turborepo runs each `build` in parallel and caches & hashes the output to speed up future builds.
-
-For `@pd/ui`, the `build` command is equivalent to the following:
+## 🚀 Quick Start
 
 ```bash
-tsup src/*.tsx --format esm,cjs --dts --external react
+# Install dependencies
+pnpm install
+
+# Start all apps in development
+pnpm dev
+
+# Open Storybook
+pnpm --filter docs dev
+
+# Run the Issues App (Next.js Kanban board)
+pnpm --filter issues-app dev
+
+# Run E2E tests
+cd apps/e2e && pnpm test
 ```
 
-`tsup` compiles all of the components in the design system individually, into both ES Modules and CommonJS formats as well as their TypeScript types. The `package.json` for `@pd/ui` then instructs the consumer to select the correct format:
+---
 
-```json:ui/package.json
-{
-  "name": "@pd/ui",
-  "version": "0.0.0",
-  "sideEffects": false,
-  "exports":{
-    "./button": {
-      "types": "./src/button.tsx",
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js"
-    }
-  }
-}
+## 📂 Project Structure
+
+```
+design-system/
+├── apps/
+│   ├── docs/              # Storybook documentation site
+│   ├── e2e/               # Playwright end-to-end tests
+│   └── issues-app/        # Next.js kanban board application
+├── packages/
+│   ├── design-tokens/     # Style Dictionary design tokens
+│   ├── eslint-config/     # Shared ESLint configurations
+│   ├── icons/             # Automated SVG → React icon generation
+│   ├── typescript-config/ # Shared TypeScript configurations
+│   └── ui/                # React component library
+└── turbo.json             # Turborepo build orchestration
 ```
 
-Run `pnpm build` to confirm compilation is working correctly. You should see a folder `ui/dist` which contains the compiled output.
+Naming convention:  
+- `@pd/ui` → UI components  
+- `@pd/icons` → icons  
+- `@pd/design-tokens` → design tokens  
 
-```bash
-ui
-└── dist
-    ├── button.d.ts  <-- Types
-    ├── button.js    <-- CommonJS version
-    ├── button.mjs   <-- ES Modules version
-    └── button.d.mts   <-- ES Modules version with Types
+---
+
+## 📸 Screenshots
+
+> Replace these placeholders with real screenshots/GIFs.
+
+- **Kanban Board UI**  
+  ![Kanban Board Screenshot](./kanban-board.png)
+
+- **Storybook Docs**  
+  ![Storybook Screenshot](./StoryBook.png)
+
+---
+
+## ❓ Why Monorepo?
+
+A monorepo approach was chosen for several key benefits:  
+- **Single Source of Truth** → shared tokens, UI components, and configs.  
+- **Atomic Changes** → update a token or component and all apps reflect it instantly.  
+- **Consistent Tooling** → unified linting, testing, build pipelines.  
+- **Simplified Releases** → coordinated versioning across apps/packages.  
+- **Better DX** → one clone, one install, everything works together.  
+
+---
+
+## ❓ Why Style Dictionary?
+
+Style Dictionary was selected as the **token compiler** because it:  
+- **Supports Multi-Platform Outputs** → CSS vars, Tailwind config, TS types, JSON.  
+- **Keeps Tokens Source-Agnostic** → design tokens exported from Figma once, reused everywhere.  
+- **Automates Theming** → light/dark variations with zero manual duplication.  
+- **Future Proof** → if we add React Native or another platform, we just add a new output format.  
+
+Without Style Dictionary, we’d be **copy-pasting values** into multiple formats, increasing drift and errors.  
+
+---
+
+## 🎨 Design Token Strategy
+
+The system is built on a **token-first approach** using **Style Dictionary**.  
+
+### Flow: From Figma → Code
+
+```mermaid
+graph TD
+    A("Figma + Token Studio") --> B("design-tokens JSON")
+    B --> C("Style Dictionary Build")
+    C --> D("CSS Variables")
+    C --> E("Tailwind Config")
+    C --> F("TypeScript Types")
+    D & E & F --> G("@pd/ui + issues-app")
 ```
 
-## Components
+### Token Layers
+- **Core Tokens** → raw values (colors, spacing, typography, shadows).  
+- **Semantic Tokens** → context-aware (primary-bg, text-heading, border-muted).  
+- **Themes** → light/dark overrides via CSS variables.  
 
-Each file inside of `ui/src` is a component inside our design system. For example:
+### Distribution
+- CSS Custom Properties → runtime theming.  
+- Tailwind Config → utility-first styling.  
+- TypeScript Definitions → type-safe usage in components.  
 
-```tsx:ui/src/Button.tsx
-import * as React from 'react';
+---
 
-export interface ButtonProps {
-  children: React.ReactNode;
-}
+## 🧩 UI Components (`@pd/ui`)
 
-export function Button(props: ButtonProps) {
-  return <button>{props.children}</button>;
-}
+Production-ready React components:  
+- **Badge** – status indicators  
+- **Button** – multiple variants & states  
+- **Card** – container component  
+- **Input** – form fields with validation  
+- **Modal** – dialogs with focus trapping  
+- **Text** – semantic typography  
 
-Button.displayName = 'Button';
+All built with:  
+- TypeScript for type safety  
+- Tailwind CSS for styling  
+- WCAG 2.1 AA accessibility baked in  
+- Storybook for documentation  
+
+---
+
+## 📖 Storybook
+
+Interactive documentation with:  
+- Live playgrounds  
+- Auto-generated prop tables  
+- A11y addon for compliance  
+- Responsive viewport testing  
+- Theme toggle (light/dark)  
+
+Run at `localhost:6006` during development.  
+
+---
+
+## 🎨 Theming System
+
+- **CSS Custom Properties** for instant runtime theme switching.  
+- **React Context** for theme state.  
+- **Tailwind Integration** so all utilities are token-driven.  
+
+---
+
+## ♿ Accessibility Features
+
+- **Focus management** (custom focus rings, modal focus trapping).  
+- **ARIA roles + states** for screen readers.  
+- **Keyboard navigation** (arrow keys, Enter/Space, Escape dismissal).  
+- **Testing** via Storybook a11y addon + Playwright axe checks.  
+
+---
+
+## 🧪 End-to-End Testing
+
+Playwright ensures Kanban functionality works across browsers.  
+
+✔ Create, update, and move cards.  
+✔ Modal open/close (click, cancel, escape).  
+✔ Cross-column drag-and-drop.  
+✔ Card count consistency.  
+
+**Example Test**  
+```ts
+test("creates a new card", async ({ page }) => {
+  await page.getByRole("button", { name: "New Issue" }).click();
+  await page.fill("input[name=title]", "Fix login bug");
+  await page.click("button[type=submit]");
+  await expect(page.getByText("Fix login bug")).toBeVisible();
+});
 ```
 
-When adding a new file, ensure that its specifier is defined in `package.json` file:
+---
 
-```json:ui/package.json
-{
-  "name": "@pd/ui",
-  "version": "0.0.0",
-  "sideEffects": false,
-  "exports":{
-    "./button": {
-      "types": "./src/button.tsx",
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js"
-    }
-    // Add new component exports here
-  }
-}
-```
+## 🔒 Branch Protection & CI/CD
 
-## Storybook
+- **Branch Protection** → no direct pushes to `main`.  
+- **Status Checks** → build, lint, test, type-check required.  
+- **CI/CD** → GitHub Actions (build + test + deploy).  
 
-Storybook provides us with an interactive UI playground for our components. This allows us to preview our components in the browser and instantly see changes when developing locally. This example preconfigures Storybook to:
+---
 
-- Use Vite to bundle stories instantly (in milliseconds)
-- Automatically find any stories inside the `stories/` folder
-- Support using module path aliases like `@pd/ui` for imports
-- Write MDX for component documentation pages
+## 🗂 Issues App (Next.js 15 + React 19)
 
-For example, here's the included Story for our `Button` component:
+A Kanban board app demonstrating design system integration.  
 
-```js:apps/docs/stories/button.stories.mdx
-import { Button } from '@pd/ui/button';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+### Features
+- Create New Issue modal  
+- Update Issue modal  
+- Smooth drag-and-drop  
+- Modal focus + escape handling  
+- Suspense for skeleton loading  
 
-<Meta title="Components/Button" component={Button} />
+### Server Actions
+- Direct form → server function (no API routes).  
+- Fully type-safe, smaller client bundles, better perf.  
 
-# Button
+---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur tempor, nisl nunc egestas nisi, euismod aliquam nisl nunc euismod.
+## ⚙️ Tech Stack
 
-## Props
+- **Monorepo**: Turborepo + pnpm  
+- **Frontend**: Next.js 15 + React 19 + TypeScript  
+- **Styling**: Tailwind CSS + CSS Vars  
+- **Design Tokens**: Style Dictionary  
+- **Docs**: Storybook  
+- **Testing**: Playwright + Jest  
+- **Build**: tsup + Turbopack  
+- **CI/CD**: GitHub Actions  
 
-<Props of={Box} />
+---
 
-## Examples
 
-<Preview>
-  <Story name="Default">
-    <Button>Hello</Button>
-  </Story>
-</Preview>
-```
-
-This example includes a few helpful Storybook scripts:
-
-- `pnpm dev`: Starts Storybook in dev mode with hot reloading at `localhost:6006`
-- `pnpm build`: Builds the Storybook UI and generates the static HTML files
-- `pnpm preview-storybook`: Starts a local server to view the generated Storybook UI
-
-## Versioning & Publishing Packages
-
-This example uses [Changesets](https://github.com/changesets/changesets) to manage versions, create changelogs, and publish to npm. It's preconfigured so you can start publishing packages immediately.
-
-You'll need to create an `NPM_TOKEN` and `GITHUB_TOKEN` and add it to your GitHub repository settings to enable access to npm. It's also worth installing the [Changesets bot](https://github.com/apps/changeset-bot) on your repository.
-
-### Generating the Changelog
-
-To generate your changelog, run `pnpm changeset` locally:
-
-1. **Which packages would you like to include?** – This shows which packages and changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
-1. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
-1. If doing the first major version, confirm you want to release.
-1. Write a summary for the changes.
-1. Confirm the changeset looks as expected.
-1. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
-
-### Releasing
-
-When you push your code to GitHub, the [GitHub Action](https://github.com/changesets/action) will run the `release` script defined in the root `package.json`:
-
-```bash
-turbo run build --filter=docs^... && changeset publish
-```
-
-Turborepo runs the `build` script for all publishable packages (excluding docs) and publishes the packages to npm. By default, this example includes `acme` as the npm organization. To change this, do the following:
-
-- Rename folders in `packages/*` to replace `acme` with your desired scope
-- Search and replace `acme` with your desired scope
-- Re-run `pnpm install`
-
-To publish packages to a private npm organization scope, **remove** the following from each of the `package.json`'s
-
-```diff
-- "publishConfig": {
--  "access": "public"
-- },
-```
