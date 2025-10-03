@@ -43,7 +43,7 @@ export function KanbanColumn({ column, activeId, onIssueCreated, onCardClick }: 
   return (
     <div 
       ref={setNodeRef}
-      className="w-75  p-4 rounded-lg border border-card min-h-[500px]"
+      className="flex-1 w-full md:min-w-0 md:max-w-none p-3 md:p-2 rounded-lg border border-card min-h-[400px] md:min-h-[500px]"
       data-testid={`column-${column.id}`}
       data-column-id={column.id}
     >
