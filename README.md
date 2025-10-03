@@ -97,12 +97,12 @@ The system is built on a **token-first approach** using **Style Dictionary**.
 
 ```mermaid
 graph TD
-    A[Figma + Token Studio] --> B[design-tokens (JSON)]
-    B --> C[Style Dictionary Build]
-    C --> D[CSS Variables]
-    C --> E[Tailwind Config]
-    C --> F[TypeScript Types]
-    D & E & F --> G[@pd/ui + issues-app]
+    A("Figma + Token Studio") --> B("design-tokens JSON")
+    B --> C("Style Dictionary Build")
+    C --> D("CSS Variables")
+    C --> E("Tailwind Config")
+    C --> F("TypeScript Types")
+    D & E & F --> G("@pd/ui + issues-app")
 ```
 
 ### Token Layers
