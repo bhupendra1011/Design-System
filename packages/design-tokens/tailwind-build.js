@@ -52,11 +52,10 @@ function generateTailwindConfig() {
     });
   }
   
-  // Process spacing
+  // Process spacing - numeric keys work with Tailwind utilities
   if (lightTokens.spacing) {
     Object.entries(lightTokens.spacing).forEach(([key, tokenData]) => {
-      const name = key.replace('gap-', '');
-      spacing[name] = `var(--spacing-${key})`;
+      spacing[key] = `var(--spacing-${key})`;
     });
   }
   
@@ -117,38 +116,41 @@ function generateTailwindConfig() {
         const colorName = name.replace('text-', '');
         themeVars.push(`  --color-${colorName}: var(--colors-${name});`);
       } else if (name.startsWith('border-')) {
-        const colorName = name.replace('border-', '');
-        themeVars.push(`  --color-${colorName}: var(--colors-${name});`);
+        // Skip border-* tokens to avoid duplicates, use bg-* versions instead
+        return;
       } else if (name.startsWith('button-')) {
-        const colorName = name.replace('button-', '');
-        themeVars.push(`  --color-${colorName}: var(--colors-${name});`);
+        // Skip button-* tokens to avoid duplicates, use text-* versions instead
+        return;
       } else {
         themeVars.push(`  --color-${name}: var(--colors-${name});`);
       }
     });
   }
   
-  // Map typography
+  // Map typography - use Tailwind v4 naming conventions
   if (lightTokens.typography) {
     Object.entries(lightTokens.typography).forEach(([key, tokenData]) => {
       if (key.startsWith('font-family-')) {
         const name = key.replace('font-family-', '');
-        themeVars.push(`  --font-family-${name}: var(--typography-${key});`);
+        // Tailwind expects --font-* (not --font-family-*)
+        themeVars.push(`  --font-${name}: var(--typography-${key});`);
       } else if (key.startsWith('font-size-')) {
         const name = key.replace('font-size-', '');
-        themeVars.push(`  --font-size-${name}: var(--typography-${key});`);
+        // Tailwind expects --text-* for font-size (not --font-size-*)
+        themeVars.push(`  --text-${name}: var(--typography-${key});`);
       } else if (key.startsWith('font-weight-')) {
         const name = key.replace('font-weight-', '');
-        themeVars.push(`  --font-weight-${name}: var(--typography-${key});`);
+        // Tailwind expects --font-* (not --font-weight-*)
+        themeVars.push(`  --font-${name}: var(--typography-${key});`);
       }
     });
   }
   
-  // Map spacing
+  // Map spacing - numeric keys work with Tailwind utilities (p-1, m-2, etc.)
   if (lightTokens.spacing) {
     Object.entries(lightTokens.spacing).forEach(([key, tokenData]) => {
-      const name = key.replace('gap-', '');
-      themeVars.push(`  --spacing-${name}: var(--spacing-${key});`);
+      // Use numeric keys directly (1, 2, 3, etc.)
+      themeVars.push(`  --spacing-${key}: var(--spacing-${key});`);
     });
   }
   

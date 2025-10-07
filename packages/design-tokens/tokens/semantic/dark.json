@@ -32,11 +32,11 @@
     "font-weight-medium": { "value": "{primitives.typography.fontWeight.medium}" }
   },
   "spacing": {
-    "gap-tiny": { "value": "{primitives.spacing.xs}" },
-    "gap-small": { "value": "{primitives.spacing.sm}" },
-    "gap-medium": { "value": "{primitives.spacing.md}" },
-    "gap-large": { "value": "{primitives.spacing.lg}" },
-    "gap-section": { "value": "{primitives.spacing.xl}" }
+    "1": { "value": "{primitives.spacing.xs}" },
+    "2": { "value": "{primitives.spacing.sm}" },
+    "3": { "value": "{primitives.spacing.md}" },
+    "4": { "value": "{primitives.spacing.lg}" },
+    "5": { "value": "{primitives.spacing.xl}" }
   },
   "radius": {
     "card": { "value": "{primitives.borderRadius.sm}" },
