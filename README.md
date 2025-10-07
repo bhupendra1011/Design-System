@@ -193,7 +193,8 @@ Our design tokens automatically generate **124 Tailwind utility classes** throug
 </div>
 ```
 
-> **📚 Full Reference**: See [design-token-final.mdx](design-token-final.mdx) for complete utility class documentation.
+
+> **🎯 Live Demo**: Visit `/design-verify` route in the Next.js app to see all utilities in action.
 
 ---
 
