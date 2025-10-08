@@ -56,8 +56,6 @@ Naming convention:
 
 ## 📸 Screenshots
 
-> Replace these placeholders with real screenshots/GIFs.
-
 - **Kanban Board UI**  
   ![Kanban Board Screenshot](./kanban-board.png)
 
@@ -111,9 +109,90 @@ graph TD
 - **Themes** → light/dark overrides via CSS variables.  
 
 ### Distribution
-- CSS Custom Properties → runtime theming.  
-- Tailwind Config → utility-first styling.  
-- TypeScript Definitions → type-safe usage in components.  
+- CSS Custom Properties → runtime theming.
+- Tailwind Config → utility-first styling.
+- TypeScript Definitions → type-safe usage in components.
+
+### Generated Tailwind Utilities
+
+Our design tokens automatically generate **124 Tailwind utility classes** through a custom build pipeline:
+
+**Total Calculation**: 39 (colors) + 75 (spacing) + 7 (typography) + 3 (borders & shadows) = **124 utility classes**
+
+**🎨 Color Utilities** (39 classes)
+- 13 unique color tokens × 3 variants (`bg-*`, `text-*`, `border-*`) = **39 utility classes**
+- Skips `border-*` and `button-*` semantic tokens to avoid duplicates
+
+**The 13 Color Tokens:**
+1. `app` → `bg-app`, `text-app`, `border-app`
+2. `modal` → `bg-modal`, `text-modal`, `border-modal`
+3. `card` → `bg-card`, `text-card`, `border-card`
+4. `badge` → `bg-badge`, `text-badge`, `border-badge`
+5. `primary` → `bg-primary`, `text-primary`, `border-primary`
+6. `secondary` → `bg-secondary`, `text-secondary`, `border-secondary`
+7. `tertiary` → `bg-tertiary`, `text-tertiary`, `border-tertiary`
+8. `muted` → `bg-muted`, `text-muted`, `border-muted`
+9. `badge-active` → `bg-badge-active`, `text-badge-active`, `border-badge-active`
+10. `badge-inactive` → `bg-badge-inactive`, `text-badge-inactive`, `border-badge-inactive`
+11. `placeholder` → `bg-placeholder`, `text-placeholder`, `border-placeholder`
+12. `modal-header` → `bg-modal-header`, `text-modal-header`, `border-modal-header`
+13. `modal-shadow` → `bg-modal-shadow`, `text-modal-shadow`, `border-modal-shadow`
+
+| Sample Utilities | Light Mode | Dark Mode | Usage |
+|-----------------|-----------|-----------|-------|
+| `bg-app` / `text-app` / `border-app` | `#FFFFFF` | `#191A23` | `<div className="bg-app text-primary">` |
+| `bg-badge` / `text-badge` / `border-badge` | `#D2D3E0` | `#595974` | `<span className="bg-badge">` |
+| `bg-primary` / `text-primary` / `border-primary` | `#191A23` | `#EEEFFC` | `<h1 className="text-primary">` |
+| `text-secondary` / `text-tertiary` / `text-muted` | Various grays | Various grays | `<p className="text-secondary">` |
+
+**📏 Spacing Utilities** (75 classes)
+- 5 spacing tokens × 15 variants (p, px, py, pt, pr, pb, pl, m, mx, my, mt, mr, mb, ml, gap) = **75 utility classes**
+
+| Token | Value | Generated Classes | Example |
+|-------|-------|------------------|---------|
+| `--spacing-1` | `2px` | `p-1`, `m-1`, `gap-1`, `px-1`, `mt-1`, etc. | `<div className="p-1">` |
+| `--spacing-2` | `6px` | `p-2`, `m-2`, `gap-2`, `px-2`, `mt-2`, etc. | `<div className="px-2 py-3">` |
+| `--spacing-3` | `8px` | `p-3`, `m-3`, `gap-3`, etc. | `<div className="gap-3">` |
+| `--spacing-4` | `12px` | `p-4`, `m-4`, `gap-4`, etc. | `<div className="m-4">` |
+| `--spacing-5` | `16px` | `p-5`, `m-5`, `gap-5`, etc. | `<div className="p-5">` |
+
+**✍️ Typography Utilities** (7 classes)
+- 3 font-size + 2 font-weight + 2 font-family = **7 utility classes**
+
+| Utility | Value | Usage |
+|---------|-------|-------|
+| `text-title` | `18px` | `<h1 className="text-title">` |
+| `text-body` | `13px` | `<p className="text-body">` |
+| `text-small` | `12px` | `<span className="text-small">` |
+| `font-regular` | `400` | `<p className="font-regular">` |
+| `font-medium` | `500` | `<span className="font-medium">` |
+| `font-primary` | `Inter` | `<body className="font-primary">` |
+| `font-secondary` | `Geist` | `<code className="font-secondary">` |
+
+**🔲 Border & Shadow Utilities** (3 classes)
+- 2 border-radius + 1 shadow = **3 utility classes**
+
+| Utility | Value | Usage |
+|---------|-------|-------|
+| `rounded-card` | `4px` | `<div className="rounded-card">` |
+| `rounded-modal` | `8px` | `<div className="rounded-modal">` |
+| `shadow-modal` | `0px 16px 80px rgba(0,0,0,0.5)` | `<div className="shadow-modal">` |
+
+**Example Component:**
+```jsx
+<div className="bg-card rounded-card p-4 shadow-modal">
+  <h2 className="text-title font-medium text-primary mb-2">Card Title</h2>
+  <p className="text-body text-secondary">Description text</p>
+  <div className="flex gap-2 mt-3">
+    <span className="bg-badge text-badge-active px-2 py-1 rounded-card text-small">
+      Tag
+    </span>
+  </div>
+</div>
+```
+
+
+> **🎯 Live Demo**: Visit `/design-verify` route in the Next.js app to see all utilities in action.
 
 ---
 
@@ -223,5 +302,4 @@ A Kanban board app demonstrating design system integration.
 - **CI/CD**: GitHub Actions  
 
 ---
-
 
