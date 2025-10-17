@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type React from 'react';
-import { Input, type InputProps } from '@pd/ui/input';
+import { Input, type InputProps } from '@repo/ui/input';
 
 const meta: Meta<InputProps> = {
   title: 'Components/Input',
@@ -13,15 +13,15 @@ const meta: Meta<InputProps> = {
 
 ## Usage
 \`\`\`tsx
-import { Input } from "@pd/ui/input";
+import { Input } from "@repo/ui/input";
 
 // Basic input
 <Input label="Name" placeholder="Enter your name" />
 
 // Disabled input
 <Input 
-  label="Issue Title"
-  placeholder="Enter issue title"
+  label="Todo Title"
+  placeholder="Add a new task"
   value="Cannot edit this field"
   disabled 
 />
@@ -120,17 +120,17 @@ export const Default: Story = {
 
 export const WithValue: Story = {
   args: {
-    label: 'Issue Title',
-    placeholder: 'Enter issue title',
-    value: 'Sample issue title',
+    label: 'Todo Title',
+    placeholder: 'Add a new task',
+    value: 'Plan design system launch',
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Issue Title',
-    placeholder: 'Enter issue title',
-    value: 'Cannot edit this field',
+    label: 'Todo Title',
+    placeholder: 'Add a new task',
+    value: 'Locked field',
     disabled: true,
   },
 };
@@ -154,7 +154,6 @@ export const Textarea: Story = {
     rows: 4,
   },
 };
-
 
 
 

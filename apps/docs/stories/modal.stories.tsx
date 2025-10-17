@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { Modal, type ModalProps } from '@pd/ui/modal';
-import { Button } from '@pd/ui/button';
+import { Modal, type ModalProps } from '@repo/ui/modal';
+import { Button } from '@repo/ui/button';
 
 const meta: Meta<ModalProps> = {
   title: 'Components/Modal',
@@ -14,7 +14,7 @@ const meta: Meta<ModalProps> = {
 
 ## Usage
 \`\`\`tsx
-import { Modal } from "@pd/ui/modal";
+import { Modal } from "@repo/ui/modal";
 import { useState } from "react";
 
 function MyComponent() {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { Badge, type BadgeProps } from '@pd/ui/badge';
+import { Badge, type BadgeProps } from '@repo/ui/badge';
 import { 
   PriorityIcon, 
   AssigneeIcon, 
@@ -12,7 +12,7 @@ import {
   InprogressIcon,
   LabelIcon,
   TodoIcon
-} from '@pd/icons';
+} from '@repo/icons';
 
 // Icon selection options for Storybook controls
 const iconOptions = {
@@ -42,8 +42,8 @@ const meta: Meta<BadgeProps> = {
 
 ## Usage
 \`\`\`tsx
-import { Badge } from "@pd/ui/badge";
-import { BacklogIcon } from "@pd/icons";
+import { Badge } from "@repo/ui/badge";
+import { BacklogIcon } from "@repo/icons";
 
 // Simple badge
 <Badge>Status</Badge>

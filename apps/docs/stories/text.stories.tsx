@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Text } from '@pd/ui/text';
+import { Text } from '@repo/ui/text';
 
 const meta: Meta<typeof Text> = {
   title: 'Components/Text',
@@ -14,7 +14,7 @@ const meta: Meta<typeof Text> = {
 ## Usage
 
 \`\`\`tsx
-import { Text } from '@pd/ui/text';
+import { Text } from '@repo/ui/text';
 
 // Basic text with default body variant
 <Text>Default body text</Text>
@@ -37,11 +37,11 @@ import { Text } from '@pd/ui/text';
 ### \`variant\` - Typography Styles
 Controls the visual appearance using design tokens:
 
-- **\`title\`**: 18px, medium weight (500), primary color - Use for modal header ex: Issue title
-- **\`body\`**: 13px, regular weight (400), secondary color - Use for issue card title 
-- **\`small\`**: 12px, regular weight (400), muted color - Use for fig in cards : FIG-2,FIG-3
-- **\`label\`**: 13px, medium weight (500), primary color - Use for issue column like  Backlog,In Progress ToDO etc...
-- **\`placeholder\`**: 13px, regular weight (400), placeholder color - Use for placeholder for new issue input box
+- **\`title\`**: 18px, medium weight (500), primary color — Ideal for section headings or card titles.
+- **\`body\`**: 13px, regular weight (400), secondary color — Great for supporting copy or todo descriptions.
+- **\`small\`**: 12px, regular weight (400), muted color — Perfect for helper text or secondary metadata.
+- **\`label\`**: 13px, medium weight (500), primary color — Use for form labels such as “Todo name”.
+- **\`placeholder\`**: 13px, regular weight (400), placeholder color — Matches text shown inside empty inputs.
 
 ### \`as\` - Semantic HTML Element
 Renders the text as the specified HTML element for proper semantics:
@@ -63,9 +63,9 @@ Add Tailwind CSS classes for custom styling. Text color classes will override va
 ### Form Labels
 \`\`\`tsx
 <div>
-  <Text as="label" variant="label" htmlFor="issueText">Enter Your Issue</Text>
-  <input id="issueText" type="text" />
-  <Text variant="small">Issue Description ...</Text>
+  <Text as="label" variant="label" htmlFor="todoText">Todo title</Text>
+  <input id="todoText" type="text" />
+  <Text variant="small">Keep titles short and action oriented.</Text>
 </div>
 \`\`\`
 

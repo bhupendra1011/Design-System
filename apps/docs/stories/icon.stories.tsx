@@ -10,7 +10,7 @@ import {
   LabelIcon,
   PriorityIcon,
   TodoIcon 
-} from "@pd/icons";
+} from "@repo/icons";
 import React from "react";
 
 const meta: Meta<typeof PriorityIcon> = {
@@ -25,7 +25,7 @@ const meta: Meta<typeof PriorityIcon> = {
 ## Usage
 
 \`\`\`tsx
-import { PriorityIcon, AssigneeIcon } from "@pd/icons";
+import { PriorityIcon, AssigneeIcon } from "@repo/icons";
 
 // Basic usage 
 <PriorityIcon />

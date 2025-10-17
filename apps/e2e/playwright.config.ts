@@ -71,7 +71,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: process.env.CI ? undefined : {
-    command: 'cd ../issues-app && pnpm dev',
+    command: 'cd ../web && pnpm dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

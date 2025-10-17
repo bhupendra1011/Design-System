@@ -1,3 +1,5 @@
+"use client";
+
 import React, { type ButtonHTMLAttributes } from "react";
 
 type ButtonVariant = 'primary' | 'outline';
@@ -33,9 +35,9 @@ export function Button({ children, className, leftIcon, variant = 'primary', dis
   return (
     <button 
       className={`${baseStyles} ${variantClass} ${disabledStyles} ${className || ''}`} 
-      type="button"
       disabled={disabled}
       style={dynamicStyles}
+      type="button"
       {...other}
     >
       {leftIcon}

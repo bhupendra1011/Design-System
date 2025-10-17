@@ -1,5 +1,5 @@
 	import type { Meta, StoryObj } from "@storybook/react";
-	import { Button } from "@pd/ui/button";
+	import { Button } from "@repo/ui/button";
 	import { 
 	  PriorityIcon, 
 	  AssigneeIcon, 
@@ -11,7 +11,7 @@
 	  InprogressIcon,
 	  LabelIcon,
 	  TodoIcon
-	} from "@pd/icons";
+	} from "@repo/icons";
 
 	// Icon selection options for Storybook controls
 	const iconOptions = {
@@ -41,8 +41,8 @@
 
 ## Usage
 \`\`\`tsx
-import { Button } from "@pd/ui/button";
-import { PriorityIcon } from "@pd/icons";
+import { Button } from "@repo/ui/button";
+import { PriorityIcon } from "@repo/icons";
 
 // Basic button
 <Button>Click me</Button>

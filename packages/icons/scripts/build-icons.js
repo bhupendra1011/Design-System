@@ -101,7 +101,7 @@ function generateTypes() {
 
 // Main build function
 async function build() {
-  console.log('🚀 Building @pd/icons package...\n');
+  console.log('🚀 Building @repo/icons package...\n');
   
   const startTime = Date.now();
   

@@ -1,3 +1,5 @@
+"use client";
+
 import { type HTMLAttributes, forwardRef, useState, useId } from 'react';
 import React from 'react';
 

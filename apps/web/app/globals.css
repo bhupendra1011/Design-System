@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* Surface design token CSS variables */
+@import "../../../packages/design-tokens/dist/css/tokens.css";
+@import "../../../packages/design-tokens/dist/css/theme.css";
+
+/* Allow Tailwind utilities from the UI package */
+@source "../../../packages/ui/src";
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--colors-bg-app);
+  color: var(--colors-text-primary);
+  font-family: var(--typography-font-family-primary);
+  min-height: 100vh;
+}

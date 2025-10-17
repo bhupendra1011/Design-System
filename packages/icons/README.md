@@ -1,4 +1,4 @@
-# @pd/icons
+# @repo/icons
 
 React icon components automatically generated from SVG files with optimal tree-shaking support.
 
@@ -27,7 +27,7 @@ React icon components automatically generated from SVG files with optimal tree-s
 
 ### Basic Import
 ```tsx
-import { CloseIcon, DoneIcon, PriorityIcon } from '@pd/icons';
+import { CloseIcon, DoneIcon, PriorityIcon } from '@repo/icons';
 
 function MyComponent() {
   return (
@@ -62,7 +62,7 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 Icons use `currentColor` by default, making them perfect for Tailwind text color classes:
 
 ```tsx
-import { AssigneeIcon, PriorityIcon, CloseIcon } from '@pd/icons';
+import { AssigneeIcon, PriorityIcon, CloseIcon } from '@repo/icons';
 
 // Simple Tailwind colors (Recommended)
 <AssigneeIcon className="text-blue-500" />
@@ -124,7 +124,7 @@ cp new-icon.svg packages/icons/src/
 cd packages/icons && pnpm build
 
 # Import and use
-import { NewIcon } from '@pd/icons';
+import { NewIcon } from '@repo/icons';
 ```
 
 ### Build Commands
@@ -141,10 +141,10 @@ Each icon adds approximately 600 bytes to your bundle when imported:
 
 ```tsx
 // Only ~600 bytes added to bundle
-import { CloseIcon } from '@pd/icons';
+import { CloseIcon } from '@repo/icons';
 
 // Only ~1.2KB total added to bundle
-import { CloseIcon, DoneIcon } from '@pd/icons';
+import { CloseIcon, DoneIcon } from '@repo/icons';
 ```
 
 Tree-shaking ensures unused icons are never included in your final bundle.

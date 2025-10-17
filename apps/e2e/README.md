@@ -1,6 +1,6 @@
-# E2E Testing for Kanban Board
+# E2E Testing for Todo Example
 
-This package contains end-to-end tests for the Kanban board application using Playwright.
+This package houses Playwright-based end-to-end coverage for the minimal Next.js Todo app that ships with the design system starter.
 
 ## Quick Start
 
@@ -24,33 +24,13 @@ pnpm test:ui
 pnpm test:debug
 ```
 
-## Test Scenarios
+## Test Scenario
 
-### 1. Card Creation Flow
-- ✅ Opens New Issue modal
-- ✅ Fills form with test data
-- ✅ Submits and verifies card appears
-- ✅ Checks card count increases
-
-### 2. Card Update Flow
-- ✅ Clicks priority icon to edit
-- ✅ Modifies title and description
-- ✅ Saves changes and verifies updates
-- ✅ Checks URL navigation works
-
-### 3. Direct URL Access
-- ✅ Tests `/issues/[columnId]/[cardId]` URLs
-- ✅ Verifies modal opens automatically
-- ✅ Ensures shareable URLs work
-
-### 4. Count Consistency
-- ✅ Verifies card counts after operations
-- ✅ Ensures no duplicates or losses
-
-### 5. Modal Interactions
-- ✅ Tests opening/closing modals
-- ✅ Escape key functionality
-- ✅ Cancel button behavior
+### Todo completion flow
+- ✅ Visits the root route
+- ✅ Confirms the todo list renders
+- ✅ Toggles the first item and waits for optimistic "Saving…" state
+- ✅ Verifies the button text flips between `Mark Complete` and `Mark Pending`
 
 ## Configuration
 
@@ -74,9 +54,7 @@ Results are uploaded as artifacts for debugging.
 ```
 apps/e2e/
 ├── tests/
-│   ├── fixtures/
-│   │   └── test-data.ts      # Test data and selectors
-│   └── kanban-board.spec.ts  # Main test scenarios
+│   └── todo-app.spec.ts      # Main test scenario
 ├── playwright.config.ts      # Playwright configuration
 ├── package.json
 └── README.md
@@ -84,10 +62,9 @@ apps/e2e/
 
 ## Adding New Tests
 
-1. Add test data to `tests/fixtures/test-data.ts`
-2. Create new test files in `tests/` directory
-3. Use existing selectors and patterns
-4. Follow naming convention: `*.spec.ts`
+1. Create new specs inside `tests/`
+2. Start from the shared helper patterns in `todo-app.spec.ts`
+3. Follow naming convention: `*.spec.ts`
 
 ## Debugging
 

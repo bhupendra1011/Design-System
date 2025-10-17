@@ -1,6 +1,8 @@
+"use client";
+
 import { type HTMLAttributes, forwardRef, useEffect, useRef } from "react";
 import React from "react";
-import { CloseIcon, ExpandIcon } from "@pd/icons";
+import { CloseIcon, ExpandIcon } from "@repo/icons";
 import { Button } from "./button";
 import { Text } from "./text";
 

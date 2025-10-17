@@ -1,5 +1,5 @@
 {
-  "name": "@pd/icons",
+  "name": "@repo/icons",
   "version": "0.0.0",
   "private": true,
   "sideEffects": false,
@@ -10,6 +10,7 @@
       "import": "./dist/index.js"
     }
   },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "node scripts/build-icons.js",
     "dev": "node scripts/build-icons.js --watch",

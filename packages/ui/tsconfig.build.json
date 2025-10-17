@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/icons": ["./node_modules/@repo/icons/dist"]
+    },
+    "preserveSymlinks": false
+  }
+}
