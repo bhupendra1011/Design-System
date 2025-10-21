@@ -140,60 +140,41 @@ function ModalDemo({ title, children, ...args }: ModalDemoProps): React.ReactEle
 export const Default: Story = {
   render: (args) => (
     <ModalDemo {...args} title="Default Modal">
-      <p>This is a simple modal with some content.</p>
+      <p>This is a simple modal with default styling from design tokens.</p>
+      <p style={{ marginTop: '12px', fontSize: '13px', color: 'var(--colors-text-secondary)' }}>
+        Uses standard background, border, shadow, and spacing from the design system.
+      </p>
     </ModalDemo>
   ),
 };
 
-export const NoBackdropClose: Story = {
-  render: (args) => (
-    <ModalDemo {...args} closeOnBackdropClick={false} title="Important Notice">
-      <p>This modal cannot be closed by clicking the backdrop. You must use the close button or press Escape.</p>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-        <Button>Ok</Button>
-      </div>
-    </ModalDemo>
-  ),
-};
-
-export const WithTailwindClasses: Story = {
-  render: (args) => (
-    <ModalDemo {...args} className="bg-red-500 border-4 border-yellow-400 max-w-lg" overlayClassName="bg-blue-500/30" title="Tailwind Classes">
-      <p className="text-white">This modal demonstrates Tailwind class overrides:</p>
-      <ul className="text-white space-y-2">
-        <li><strong>overlayClassName:</strong> <code>bg-blue-500/30</code> (blue backdrop)</li>
-        <li><strong>className:</strong> <code>bg-red-500 border-4 border-yellow-400 max-w-lg</code></li>
-      </ul>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-        <Button>Close</Button>
-      </div>
-    </ModalDemo>
-  ),
-};
-
-export const WithCustomCSS: Story = {
+export const CustomCSS: Story = {
+  args: {
+    className: "gradient-modal shadow-2xl border-2 border-purple-500",
+    overlayClassName: "backdrop-blur-md bg-gradient-to-br from-purple-500/20 to-pink-500/20"
+  },
   render: (args) => (
     <>
       <style>{`
-        .gradient-overlay {
-          background: linear-gradient(45deg, rgba(255,0,150,0.3), rgba(0,255,255,0.3));
-        }
         .gradient-modal {
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           color: white;
           border-radius: 20px;
-          border: 3px solid #fff;
+          max-width: 500px;
+        }
+        .gradient-modal h2 {
+          color: white !important;
         }
       `}</style>
-      <ModalDemo {...args} className="gradient-modal" overlayClassName="gradient-overlay" title="Custom CSS">
-        <p>This modal uses custom CSS classes:</p>
-        <ul className="space-y-2">
-          <li><strong>overlayClassName:</strong> Gradient backdrop</li>
-          <li><strong>className:</strong> Gradient background with custom styling</li>
+      <ModalDemo {...args} title="Custom Styled Modal">
+        <p>This modal demonstrates custom styling with:</p>
+        <ul className="space-y-2" style={{ marginTop: '12px', marginBottom: '12px' }}>
+          <li><strong>className:</strong> gradient-modal shadow-2xl border-2 border-purple-500</li>
+          <li><strong>overlayClassName:</strong> backdrop-blur-md bg-gradient-to-br from-purple-500/20 to-pink-500/20</li>
         </ul>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-          <Button>Close</Button>
-        </div>
+        <p style={{ fontSize: '13px', opacity: 0.9 }}>
+          Edit these values in Storybook controls to see changes in real-time!
+        </p>
       </ModalDemo>
     </>
   ),

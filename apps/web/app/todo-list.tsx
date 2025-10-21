@@ -3,7 +3,6 @@
 import { useOptimistic, useState, useTransition } from "react";
 import { Button } from "@repo/ui/button";
 import { Card } from "@repo/ui/card";
-import { Badge } from "@repo/ui/badge";
 import { toggleTodo } from "./actions";
 
 type Todo = {
@@ -95,9 +94,9 @@ export function TodoList({ initialTodos }: TodoListProps) {
               }}
             >
               <div className="flex items-center justify-between gap-3">
-                <Badge className="border-transparent bg-[color-mix(in_srgb,var(--colors-button-primary)_15%,transparent)] text-[var(--colors-text-secondary)]">
+                <span className="inline-flex items-center px-2 py-1 text-sm font-normal rounded-md border border-transparent bg-[color-mix(in_srgb,var(--colors-button-primary)_15%,transparent)] text-[var(--colors-text-secondary)]">
                   {todo.completed ? "Done" : "Pending"}
-                </Badge>
+                </span>
 
                 <Button
                   variant={todo.completed ? "outline" : "primary"}

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card } from "@repo/ui/card";
-import { Badge } from "@repo/ui/badge";
 import { Button } from "@repo/ui/button";
 import { Text } from "@repo/ui/text";
 
@@ -66,11 +65,13 @@ export const Default: Story = {
 };
 
 export const WithControls: Story = {
-  name: "With badge and action",
+  name: "With status and action",
   render: (args) => (
     <Card {...args}>
       <div className="flex items-center justify-between gap-4">
-        <Badge>Pending</Badge>
+        <span className="inline-flex items-center px-2 py-1 text-sm font-normal rounded-md border border-transparent bg-[color-mix(in_srgb,var(--colors-button-primary)_15%,transparent)] text-[var(--colors-text-secondary)]">
+          Pending
+        </span>
         <Button className="!px-3 !py-1.5 text-sm">Mark Complete</Button>
       </div>
     </Card>
@@ -108,7 +109,7 @@ export const TodoListMock: Story = {
     docs: {
       description: {
         story:
-          "Snapshot of how cards appear inside the minimal Todo application. Combines Card, Badge, Button, and Text primitives.",
+          "Snapshot of how cards appear inside the minimal Todo application. Combines Card, Button, and Text primitives.",
       },
     },
   },
@@ -119,7 +120,9 @@ export const TodoListMock: Story = {
           <div className="flex flex-col gap-3">
             <Text variant="body">{item.description}</Text>
             <div className="flex items-center justify-between gap-3">
-              <Badge>{item.status}</Badge>
+              <span className="inline-flex items-center px-2 py-1 text-sm font-normal rounded-md border border-transparent bg-[color-mix(in_srgb,var(--colors-button-primary)_15%,transparent)] text-[var(--colors-text-secondary)]">
+                {item.status}
+              </span>
               <Button className="!px-3 !py-1.5 text-sm">
                 {item.status === "Done" ? "View" : "Mark Done"}
               </Button>

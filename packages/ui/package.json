@@ -24,11 +24,6 @@
       "import": "./dist/input.mjs",
       "require": "./dist/input.js"
     },
-    "./badge": {
-      "types": "./src/badge.tsx",
-      "import": "./dist/badge.mjs",
-      "require": "./dist/badge.js"
-    },
     "./modal": {
       "types": "./src/modal.tsx",
       "import": "./dist/modal.mjs",
