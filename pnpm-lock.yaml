@@ -99,6 +99,9 @@ importers:
       '@playwright/test':
         specifier: ^1.40.0
         version: 1.55.1
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/node':
         specifier: ^20.0.0
         version: 20.12.12

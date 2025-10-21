@@ -144,6 +144,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
   name: 'All Variants',
   parameters: {
+    controls: { disable: true },
     docs: {
       description: {
         story: 'Overview of all available typography variants with their design token styles.',

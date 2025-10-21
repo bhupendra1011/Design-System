@@ -1,9 +1,17 @@
+import Link from "next/link";
+
 export default function DesignVerifyPage() {
   return (
     <div className="min-h-screen bg-[var(--colors-bg-app)] p-5">
       <div className="max-w-4xl mx-auto">
         {/* Page Header */}
         <header className="mb-5">
+          <Link
+            href="/"
+            className="text-[var(--colors-button-primary)] text-[length:var(--typography-font-size-body)] hover:underline mb-3 inline-block"
+          >
+            ← Return to Home
+          </Link>
           <h1 className="text-[length:var(--typography-font-size-title)] font-[var(--typography-font-weight-medium)] text-[var(--colors-text-primary)] mb-2">
             Design Token Verification
           </h1>

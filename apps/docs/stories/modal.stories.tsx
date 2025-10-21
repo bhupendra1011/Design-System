@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
-import { Modal, type ModalProps } from '@repo/ui/modal';
-import { Button } from '@repo/ui/button';
+import type { Meta, StoryObj } from "@storybook/react";
+import React, { useState } from "react";
+import { Modal, type ModalProps } from "@repo/ui/modal";
+import { Button } from "@repo/ui/button";
 
 const meta: Meta<ModalProps> = {
-  title: 'Components/Modal',
+  title: "Components/Modal",
   component: Modal as React.ComponentType<ModalProps>,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component: `The Modal component provides an overlay dialog for displaying content above the main page.
@@ -37,13 +37,13 @@ function MyComponent() {
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
-    className: '',
-    overlayClassName: '',
+    className: "",
+    overlayClassName: "",
     closeOnBackdropClick: true,
-    title: 'Default Modal',
-    children: 'This is a simple modal with some content.',
+    title: "Default Modal",
+    children: "This is a simple modal with some content.",
   },
   argTypes: {
     children: {
@@ -115,14 +115,22 @@ interface ModalDemoProps {
   className?: string;
 }
 
-function ModalDemo({ title, children, ...args }: ModalDemoProps): React.ReactElement {
+function ModalDemo({
+  title,
+  children,
+  ...args
+}: ModalDemoProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => {
-        setIsOpen(true);
-      }}>Open Modal</Button>
+      <Button
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Open Modal
+      </Button>
       <Modal
         {...args}
         isOpen={isOpen}
@@ -141,8 +149,15 @@ export const Default: Story = {
   render: (args) => (
     <ModalDemo {...args} title="Default Modal">
       <p>This is a simple modal with default styling from design tokens.</p>
-      <p style={{ marginTop: '12px', fontSize: '13px', color: 'var(--colors-text-secondary)' }}>
-        Uses standard background, border, shadow, and spacing from the design system.
+      <p
+        style={{
+          marginTop: "12px",
+          fontSize: "13px",
+          color: "var(--colors-text-secondary)",
+        }}
+      >
+        Uses standard background, border, shadow, and spacing from the design
+        system.
       </p>
     </ModalDemo>
   ),
@@ -151,7 +166,8 @@ export const Default: Story = {
 export const CustomCSS: Story = {
   args: {
     className: "gradient-modal shadow-2xl border-2 border-purple-500",
-    overlayClassName: "backdrop-blur-md bg-gradient-to-br from-purple-500/20 to-pink-500/20"
+    overlayClassName:
+      "backdrop-blur-md bg-gradient-to-br from-purple-500/20 to-pink-500/20",
   },
   render: (args) => (
     <>
@@ -168,11 +184,8 @@ export const CustomCSS: Story = {
       `}</style>
       <ModalDemo {...args} title="Custom Styled Modal">
         <p>This modal demonstrates custom styling with:</p>
-        <ul className="space-y-2" style={{ marginTop: '12px', marginBottom: '12px' }}>
-          <li><strong>className:</strong> gradient-modal shadow-2xl border-2 border-purple-500</li>
-          <li><strong>overlayClassName:</strong> backdrop-blur-md bg-gradient-to-br from-purple-500/20 to-pink-500/20</li>
-        </ul>
-        <p style={{ fontSize: '13px', opacity: 0.9 }}>
+
+        <p style={{ fontSize: "13px", opacity: 0.9 }}>
           Edit these values in Storybook controls to see changes in real-time!
         </p>
       </ModalDemo>

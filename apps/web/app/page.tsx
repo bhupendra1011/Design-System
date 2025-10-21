@@ -1,4 +1,5 @@
 import { TodoList } from "./todo-list";
+import Link from "next/link";
 
 import { Text } from "@repo/ui/text";
 
@@ -39,6 +40,12 @@ export default function TodoPage() {
           This sample app consumes JSONPlaceholder and uses the shared design
           system components.
         </Text>
+        <Link
+          href="/tokens-verify"
+          className="text-[var(--colors-button-primary)] text-[length:var(--typography-font-size-body)] hover:underline mt-2"
+        >
+          View Design Token Verification →
+        </Link>
       </header>
 
       {/* <Suspense fallback={<TodoListSkeleton />}> */}

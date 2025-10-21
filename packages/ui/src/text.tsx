@@ -43,8 +43,8 @@ const variantStyles: Record<TextVariant, React.CSSProperties> = {
 const variantColors: Record<TextVariant, string> = {
   title: 'var(--colors-text-primary)',
   body: 'var(--colors-text-secondary)',
-  small: 'var(--colors-text-muted)', 
-  label: 'var(--colors-text-muted)',
+  small: 'var(--colors-text-muted)',
+  label: 'var(--colors-text-primary)',
   placeholder: 'var(--colors-text-placeholder)'
 };
 
